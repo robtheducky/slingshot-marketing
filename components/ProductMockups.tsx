@@ -27,7 +27,7 @@ function PhoneFrame({ children, className = '' }: { children: React.ReactNode; c
   );
 }
 
-function BrowserFrame({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+export function BrowserFrame({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
     <div className={`rounded-xl overflow-hidden shadow-2xl border border-[#E0D8CC] bg-white ${className}`}>
       {/* Browser chrome */}

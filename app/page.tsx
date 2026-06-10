@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import SlingshotLogo from '@/components/SlingshotLogo';
-import { IepDetailMockup, PacketMockup } from '@/components/ProductMockups';
+import { IepDetailMockup, PacketMockup, BrowserFrame } from '@/components/ProductMockups';
 
 const SIGNIN_URL = 'https://app.slingshotiep.com/parent?signin=1';
 const APP_STORE_URL = 'https://apps.apple.com/us/app/slingshot-iep/id6763329479';
@@ -53,6 +53,89 @@ function ProContactForm({ className = '' }: { className?: string }) {
       {status === 'error' && (
         <p className="mt-2 text-xs text-red-400">Something went wrong. Email hello@slingshotiep.com directly.</p>
       )}
+    </div>
+  );
+}
+
+const WEB_SLIDES = [
+  {
+    label: 'Your IEP, decoded',
+    heading: 'Every goal, service, and gap in plain language.',
+    body: 'Slingshot reads your IEP and surfaces what matters: goals without baselines, services reduced from last year, areas of need with no supporting goal.',
+    cta: 'Try it with your IEP',
+    // Drop a real screenshot at public/web/iep-detail.png to replace the code mockup
+    screenshot: '/web/iep-detail.png',
+    Mockup: IepDetailMockup,
+  },
+  {
+    label: 'Your meeting plan',
+    heading: 'Know exactly what to say before you sit down.',
+    body: 'Answer a few questions about your child. Slingshot builds a prioritized agenda with the right language, grounded in your IEP.',
+    cta: 'Start your meeting prep',
+    screenshot: '/web/packet.png',
+    Mockup: PacketMockup,
+  },
+] as const;
+
+function WebAppCarousel() {
+  const [idx, setIdx] = useState(0);
+  const s = WEB_SLIDES[idx];
+
+  return (
+    <div>
+      {/* Header row */}
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-widest text-[#D97706] mb-3">{s.label}</p>
+          <p className="text-2xl font-bold leading-snug max-w-sm">{s.heading}</p>
+        </div>
+        <div className="flex items-center gap-4 shrink-0">
+          {/* Slide controls */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setIdx(i => Math.max(0, i - 1))}
+              disabled={idx === 0}
+              className="w-8 h-8 rounded-full border border-[#E8DFD0] flex items-center justify-center disabled:opacity-25 hover:bg-[#FAF7F2] transition-colors"
+              aria-label="Previous"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+            </button>
+            <span className="text-xs text-[#9B9086] tabular-nums w-8 text-center">{idx + 1} / {WEB_SLIDES.length}</span>
+            <button
+              onClick={() => setIdx(i => Math.min(WEB_SLIDES.length - 1, i + 1))}
+              disabled={idx === WEB_SLIDES.length - 1}
+              className="w-8 h-8 rounded-full border border-[#E8DFD0] flex items-center justify-center disabled:opacity-25 hover:bg-[#FAF7F2] transition-colors"
+              aria-label="Next"
+            >
+              <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 3l5 5-5 5"/></svg>
+            </button>
+          </div>
+          <a
+            href={SIGNIN_URL}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] transition-colors rounded-lg px-4 py-2"
+          >
+            {s.cta}
+            <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </div>
+
+      {/* Slide content */}
+      <s.Mockup className="w-full" />
+
+      <p className="text-sm text-[#6B6B6B] leading-relaxed mt-5 max-w-lg">{s.body}</p>
+
+      {/* Dot indicators */}
+      <div className="flex gap-1.5 mt-5">
+        {WEB_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setIdx(i)}
+            className={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? 'bg-[#D97706]' : 'bg-[#E8DFD0]'}`}
+            aria-label={`Go to slide ${i + 1}`}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -154,45 +237,12 @@ export default function HomePage() {
       <section id="product" className="border-t border-[#EAE4DB] py-20 bg-white">
         <div className="mx-auto max-w-5xl px-6">
 
-          {/* Feature 1: IEP decoded */}
+          {/* Web app carousel */}
           <div className="mb-24">
-            <p className="text-sm font-bold uppercase tracking-widest text-[#D97706] mb-3">Your IEP, decoded</p>
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-              <p className="text-2xl font-bold leading-snug max-w-sm">Every goal, service, and gap in plain language.</p>
-              <a
-                href={SIGNIN_URL}
-                className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] transition-colors rounded-lg px-4 py-2"
-              >
-                Try it with your IEP
-                <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-              </a>
-            </div>
-            <IepDetailMockup className="w-full" />
-            <p className="text-sm text-[#6B6B6B] leading-relaxed mt-5 max-w-lg">
-              Slingshot reads your IEP and surfaces what matters: goals without baselines, services reduced from last year, areas of need with no supporting goal.
-            </p>
+            <WebAppCarousel />
           </div>
 
-          {/* Feature 2: Meeting prep */}
-          <div className="mb-24 border-t border-[#F0EBE3] pt-20">
-            <p className="text-sm font-bold uppercase tracking-widest text-[#D97706] mb-3">Your meeting plan</p>
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-              <p className="text-2xl font-bold leading-snug max-w-sm">Know exactly what to say before you sit down.</p>
-              <a
-                href={SIGNIN_URL}
-                className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] transition-colors rounded-lg px-4 py-2"
-              >
-                Start your meeting prep
-                <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-              </a>
-            </div>
-            <PacketMockup className="w-full" />
-            <p className="text-sm text-[#6B6B6B] leading-relaxed mt-5 max-w-lg">
-              Answer a few questions about your child. Slingshot builds a prioritized agenda with the right language, grounded in your IEP.
-            </p>
-          </div>
-
-          {/* Feature 3: Mobile — parent observations */}
+          {/* Feature: Mobile — parent observations */}
           <div className="border-t border-[#F0EBE3] pt-20">
             <p className="text-sm font-bold uppercase tracking-widest text-[#9FB7C8] mb-3">Only in the mobile app</p>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
@@ -213,12 +263,12 @@ export default function HomePage() {
               {/* Two phones */}
               <div className="flex gap-5 shrink-0">
                 {/* Phone 1: logging */}
-                <div className="w-[160px] rounded-[32px] border-4 border-[#2D2A26] overflow-hidden shadow-xl bg-[#FAF7F2]">
+                <div className="w-[200px] rounded-[36px] border-4 border-[#2D2A26] overflow-hidden shadow-xl bg-[#FAF7F2]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/mobile/log.png" alt="Slingshot daily goal logging screen" className="w-full block" />
                 </div>
                 {/* Phone 2: meeting prep */}
-                <div className="w-[160px] rounded-[32px] border-4 border-[#2D2A26] overflow-hidden shadow-xl bg-[#FAF7F2]">
+                <div className="w-[200px] rounded-[36px] border-4 border-[#2D2A26] overflow-hidden shadow-xl bg-[#FAF7F2]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/mobile/prep.png" alt="Slingshot mobile meeting prep screen" className="w-full block" />
                 </div>
