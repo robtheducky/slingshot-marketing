@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg-warm:    #FBF7F2;
+  --bg-surface: #FDFBF8;
+  --action:     #D97706;
+  --action-hover: #B45309;
+  --border-warm: #E8DFD0;
+  --text-dark:  #2F2F2F;
+  --text-muted: #6B6B6B;
+}
+
+html, body { height: 100%; }
+
+body {
+  background-color: var(--bg-warm);
+  @apply antialiased;
+}
