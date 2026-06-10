@@ -132,10 +132,10 @@ export default function HomePage() {
       <section className="mx-auto max-w-3xl px-6 py-20 border-t border-[#EAE4DB]">
         <p className="text-2xl font-bold mb-4">For independent SPED advocates.</p>
         <p className="text-base text-[#6B6B6B] leading-relaxed max-w-lg mb-6">
-          Slingshot handles the prep work so you can focus on the judgment calls. Built-in triage helps you route families to the right level of support.
+          We're recruiting advocate partners for co-development and want to support your practice. If you work with families navigating IEPs, we'd like to hear from you.
         </p>
-        <a href="mailto:hello@slingshotiep.com?subject=Advocate access" className="text-sm font-semibold text-[#D97706] hover:text-[#B45309] hover:underline transition-colors">
-          Get in touch
+        <a href="mailto:rob@slingshotiep.com?subject=Advocate partnership" className="text-sm font-semibold text-[#D97706] hover:text-[#B45309] hover:underline transition-colors">
+          Email rob@slingshotiep.com
         </a>
       </section>
 
