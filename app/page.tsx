@@ -2,13 +2,13 @@
 
 import { useState } from 'react';
 import SlingshotLogo from '@/components/SlingshotLogo';
-import { IepDetailMockup, PacketMockup, GoalLoggingMobileMockup, MeetingPrepMobileMockup } from '@/components/ProductMockups';
+import { IepDetailMockup, PacketMockup } from '@/components/ProductMockups';
 
 const SIGNIN_URL = 'https://app.slingshotiep.com/parent?signin=1';
 const APP_STORE_URL = 'https://apps.apple.com/us/app/slingshot-iep/id6763329479';
 
-function WaitlistForm({ className = '' }: { className?: string }) {
-  const [email,  setEmail]  = useState('');
+function ProContactForm({ className = '' }: { className?: string }) {
+  const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
 
   async function handleSubmit(e: React.FormEvent) {
@@ -16,7 +16,7 @@ function WaitlistForm({ className = '' }: { className?: string }) {
     if (!email.trim()) return;
     setStatus('submitting');
     try {
-      await fetch('/api/waitlist', {
+      await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -28,7 +28,7 @@ function WaitlistForm({ className = '' }: { className?: string }) {
   }
 
   if (status === 'done') {
-    return <p className="text-sm font-medium text-[#059669]">You're on the list. We'll be in touch.</p>;
+    return <p className="text-sm font-medium text-[#059669]">Got it. We'll be in touch soon.</p>;
   }
 
   return (
@@ -47,12 +47,62 @@ function WaitlistForm({ className = '' }: { className?: string }) {
           disabled={status === 'submitting' || !email.trim()}
           className="rounded-lg px-5 py-2.5 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] disabled:opacity-50 transition-colors whitespace-nowrap"
         >
-          {status === 'submitting' ? 'Joining...' : 'Join the waitlist'}
+          {status === 'submitting' ? 'Sending...' : 'Get in touch'}
         </button>
       </form>
       {status === 'error' && (
         <p className="mt-2 text-xs text-red-400">Something went wrong. Email hello@slingshotiep.com directly.</p>
       )}
+    </div>
+  );
+}
+
+const team = [
+  {
+    initials: 'RM',
+    name: 'Rob Martin',
+    role: 'Co-founder',
+    bio: 'Healthcare product leader and parent of a child with a disability.',
+    color: '#D97706',
+  },
+  {
+    initials: 'MM',
+    name: 'Maddie Magnusson',
+    role: 'Co-founder',
+    bio: 'Social-emotional learning specialist. 50+ IEP meetings across DC, Maryland, and Virginia.',
+    color: '#9FB7C8',
+  },
+];
+
+function TeamCarousel() {
+  const [idx, setIdx] = useState(0);
+  return (
+    <div>
+      {/* Cards */}
+      <div className="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-none">
+        {team.map((p) => (
+          <div key={p.name} className="snap-start shrink-0 w-64 bg-white rounded-2xl border border-[#E8DFD0] p-5 flex flex-col gap-4">
+            <div
+              className="w-14 h-14 rounded-full flex items-center justify-center text-white text-lg font-extrabold"
+              style={{ backgroundColor: p.color }}
+            >
+              {p.initials}
+            </div>
+            <div>
+              <p className="font-bold text-[#2F2F2F]">{p.name}</p>
+              <p className="text-xs text-[#9B9086] mb-2">{p.role}</p>
+              <p className="text-sm text-[#6B6B6B] leading-relaxed">{p.bio}</p>
+            </div>
+          </div>
+        ))}
+        {/* Placeholder */}
+        <div className="snap-start shrink-0 w-64 bg-[#FDFBF8] rounded-2xl border border-dashed border-[#E8DFD0] p-5 flex flex-col items-center justify-center gap-2 text-center">
+          <div className="w-14 h-14 rounded-full bg-[#F0EBE3] flex items-center justify-center">
+            <span className="text-[#B8AFA5] text-xl">+</span>
+          </div>
+          <p className="text-sm text-[#B8AFA5]">More coming soon</p>
+        </div>
+      </div>
     </div>
   );
 }
@@ -67,7 +117,7 @@ export default function HomePage() {
           <SlingshotLogo size="sm" />
           <div className="hidden sm:flex items-center gap-7">
             <a href="#product"   className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">See it in action</a>
-            <a href="#advocates" className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">For advocates</a>
+            <a href="#advocates" className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">For professionals</a>
             <a href="#about"     className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">About</a>
             <a href={SIGNIN_URL} className="text-xs font-semibold text-[#D97706] hover:text-[#B45309] transition-colors">Sign in</a>
           </div>
@@ -83,37 +133,21 @@ export default function HomePage() {
         <p className="text-lg text-[#6B6B6B] leading-relaxed max-w-sm mb-10">
           Slingshot turns what you know about your child into a meeting agenda that's ready for the room.
         </p>
-        <WaitlistForm className="max-w-sm" />
-        <p className="mt-3 text-xs text-[#B8AFA5]">Free to start. For families and advocates.</p>
-      </section>
-
-      {/* Stat — dark section */}
-      <section className="bg-[#2D2A26] py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-col sm:flex-row sm:items-baseline gap-4 sm:gap-12 mb-16">
-            <span className="text-[96px] font-extrabold text-[#D97706] leading-none shrink-0">7in10</span>
-            <p className="text-2xl font-semibold text-white leading-snug max-w-xs">
-              parents of children with disabilities lose services because they don't know their rights.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-12">
-            <div>
-              <p className="font-semibold text-white mb-1">Deficits compound.</p>
-              <p className="text-sm text-[#9B9086] leading-relaxed">Unaddressed concerns worsen every year the support isn't in the IEP.</p>
-            </div>
-            <div>
-              <p className="font-semibold text-white mb-1">Impacts ripple out.</p>
-              <p className="text-sm text-[#9B9086] leading-relaxed">Many states tie additional services directly to IEP service hours.</p>
-            </div>
-            <div>
-              <p className="font-semibold text-white mb-1">Guilt and anger follow.</p>
-              <p className="text-sm text-[#9B9086] leading-relaxed">Parents feel they let their child down when they didn't know what to ask for.</p>
-            </div>
-          </div>
-          <p className="mt-12 text-xs text-[#6B6460] italic">
-            Burke, M.M. (2013). Improving parental involvement. Journal of Disability Policy Studies, 23, 225-234.
-          </p>
+        <div className="flex flex-col sm:flex-row gap-3">
+          <a
+            href={SIGNIN_URL}
+            className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] transition-colors"
+          >
+            Get started free
+          </a>
+          <a
+            href="#product"
+            className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold border border-[#E8DFD0] text-[#6B6B6B] hover:text-[#2F2F2F] hover:border-[#C4B9A8] transition-colors"
+          >
+            See how it works
+          </a>
         </div>
+        <p className="mt-4 text-xs text-[#B8AFA5]">Free to start. For families and advocates.</p>
       </section>
 
       {/* Product showcase */}
@@ -122,14 +156,14 @@ export default function HomePage() {
 
           {/* Feature 1: IEP decoded */}
           <div className="mb-24">
-            <p className="text-[8px] font-bold uppercase tracking-widest text-[#D97706] mb-2">Your IEP, decoded</p>
+            <p className="text-sm font-bold uppercase tracking-widest text-[#D97706] mb-3">Your IEP, decoded</p>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
               <p className="text-2xl font-bold leading-snug max-w-sm">Every goal, service, and gap in plain language.</p>
               <a
                 href={SIGNIN_URL}
-                className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-[#D97706] hover:text-[#B45309] transition-colors"
+                className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] transition-colors rounded-lg px-4 py-2"
               >
-                Open in web app
+                Try it with your IEP
                 <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
             </div>
@@ -141,14 +175,14 @@ export default function HomePage() {
 
           {/* Feature 2: Meeting prep */}
           <div className="mb-24 border-t border-[#F0EBE3] pt-20">
-            <p className="text-[8px] font-bold uppercase tracking-widest text-[#D97706] mb-2">Your meeting plan</p>
+            <p className="text-sm font-bold uppercase tracking-widest text-[#D97706] mb-3">Your meeting plan</p>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
               <p className="text-2xl font-bold leading-snug max-w-sm">Know exactly what to say before you sit down.</p>
               <a
                 href={SIGNIN_URL}
-                className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-[#D97706] hover:text-[#B45309] transition-colors"
+                className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] transition-colors rounded-lg px-4 py-2"
               >
-                Open in web app
+                Start your meeting prep
                 <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
               </a>
             </div>
@@ -158,33 +192,50 @@ export default function HomePage() {
             </p>
           </div>
 
-          {/* Feature 3: Mobile */}
+          {/* Feature 3: Mobile — parent observations */}
           <div className="border-t border-[#F0EBE3] pt-20">
-            <p className="text-[8px] font-bold uppercase tracking-widest text-[#9FB7C8] mb-2">On your phone</p>
+            <p className="text-sm font-bold uppercase tracking-widest text-[#9FB7C8] mb-3">Only in the mobile app</p>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-              <p className="text-2xl font-bold leading-snug max-w-sm">Log observations. Follow along live.</p>
+              <p className="text-2xl font-bold leading-snug max-w-md">You know your child better than anyone in that room.</p>
               <a
                 href={`sms:?&body=Download Slingshot IEP for iOS: ${APP_STORE_URL}`}
-                className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-[#9FB7C8] hover:text-[#8BA5B5] transition-colors"
+                className="shrink-0 inline-flex items-center gap-2 text-sm font-semibold bg-[#9FB7C8] text-white hover:bg-[#8BA5B5] transition-colors rounded-lg px-4 py-2"
               >
                 <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="5" y="1.5" width="10" height="17" rx="2" />
                   <line x1="9" y1="15.5" x2="11" y2="15.5" />
                 </svg>
-                Text a link to your phone
+                Text the app to your phone
               </a>
             </div>
-            <div className="flex gap-6 items-start overflow-x-auto pb-2">
-              <GoalLoggingMobileMockup />
-              <MeetingPrepMobileMockup />
-              <div className="hidden sm:flex flex-col gap-6 pt-4 max-w-xs shrink-0">
+
+            <div className="flex flex-col lg:flex-row gap-12 items-start">
+              {/* Two phones */}
+              <div className="flex gap-5 shrink-0">
+                {/* Phone 1: logging */}
+                <div className="w-[160px] rounded-[32px] border-4 border-[#2D2A26] overflow-hidden shadow-xl bg-[#FAF7F2]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/mobile/log.png" alt="Slingshot daily goal logging screen" className="w-full block" />
+                </div>
+                {/* Phone 2: meeting prep */}
+                <div className="w-[160px] rounded-[32px] border-4 border-[#2D2A26] overflow-hidden shadow-xl bg-[#FAF7F2]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/mobile/prep.png" alt="Slingshot mobile meeting prep screen" className="w-full block" />
+                </div>
+              </div>
+
+              {/* Copy */}
+              <div className="space-y-6 max-w-sm pt-2">
+                <p className="text-sm text-[#6B6B6B] leading-relaxed">
+                  Teachers see your child for a few hours a week. You see them every day. Log what you notice — what's improving, what's still hard, what you want the team to know.
+                </p>
                 <div>
-                  <p className="text-sm font-semibold mb-1">Keep notes between meetings.</p>
-                  <p className="text-sm text-[#6B6B6B] leading-relaxed">Log what you observe at home so you walk in with more than your memory.</p>
+                  <p className="text-sm font-semibold mb-1">Your observations, connected to their goals.</p>
+                  <p className="text-sm text-[#6B6B6B] leading-relaxed">Slingshot maps your notes to IEP goals over time, so you don't just show up with feelings — you show up with a record.</p>
                 </div>
                 <div>
-                  <p className="text-sm font-semibold mb-1">Follow your agenda live.</p>
-                  <p className="text-sm text-[#6B6B6B] leading-relaxed">Check off talking points as the meeting moves. Nothing falls through the cracks.</p>
+                  <p className="text-sm font-semibold mb-1">The evidence that changes the IEP.</p>
+                  <p className="text-sm text-[#6B6B6B] leading-relaxed">Parent insight, trended and in context, is almost always the gap in the room. Slingshot helps you fill it.</p>
                 </div>
               </div>
             </div>
@@ -193,43 +244,23 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Advocates */}
+      {/* Advocates / professionals */}
       <section id="advocates" className="bg-[#FDFBF8] border-t border-[#EAE4DB] py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-2xl font-bold mb-4 max-w-xs leading-snug">For independent SPED advocates.</p>
+          <p className="text-2xl font-bold mb-4 max-w-sm leading-snug">For advocates, teachers, or professionals.</p>
           <p className="text-base text-[#6B6B6B] leading-relaxed max-w-sm mb-6">
-            We're recruiting advocate partners for co-development and want to support your practice. If you work with families navigating IEPs, we'd like to hear from you.
+            We're recruiting partners for co-development and want to support your practice. If you work with families navigating IEPs, leave your email and we'll reach out.
           </p>
-          <a href="mailto:rob@slingshotiep.com?subject=Advocate partnership" className="text-sm font-semibold text-[#D97706] hover:text-[#B45309] hover:underline transition-colors">
-            Email rob@slingshotiep.com
-          </a>
+          <ProContactForm className="max-w-sm" />
         </div>
       </section>
 
-      {/* About */}
+      {/* About — team carousel */}
       <section id="about" className="border-t border-[#EAE4DB] py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-2xl font-bold mb-4">Built from the inside.</p>
-          <p className="text-base text-[#6B6B6B] leading-relaxed max-w-sm">
-            Rob Martin is a healthcare product leader and parent of a child with a disability. Maddie Magnusson has sat in more than 50 IEP meetings as a social-emotional learning specialist across DC, Maryland, and Virginia. Slingshot is what they built after sitting on both sides of the table.
-          </p>
-        </div>
-      </section>
-
-      {/* Bottom CTA — slate */}
-      <section className="bg-[#9FB7C8] py-24">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-3 max-w-sm text-[#2D2A26]">
-            The right support at 6 changes what's possible at 16.
-          </h2>
-          <p className="text-base text-[#2D2A26]/70 mb-8 max-w-xs leading-relaxed">
-            Join families and advocates preparing for what matters most.
-          </p>
-          <WaitlistForm className="max-w-sm" />
-          <p className="mt-4 text-xs text-[#2D2A26]/40">
-            Already have an account?{' '}
-            <a href={SIGNIN_URL} className="text-[#2D2A26]/60 hover:text-[#2D2A26] underline">Sign in</a>
-          </p>
+          <p className="text-2xl font-bold mb-2">Built from the inside.</p>
+          <p className="text-sm text-[#9B9086] mb-8">The team that built Slingshot has sat on both sides of the IEP table.</p>
+          <TeamCarousel />
         </div>
       </section>
 
