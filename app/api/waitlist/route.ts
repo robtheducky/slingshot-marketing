@@ -1,25 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// Set BACKEND_URL in Vercel env vars to the Railway backend, e.g.:
-// https://slingshot-iep-production.up.railway.app
-const BACKEND = process.env.BACKEND_URL ?? 'https://app.slingshotiep.com';
+const RESEND_KEY = process.env.RESEND_API_KEY ?? '';
 
 export async function POST(req: NextRequest) {
-  const { email, role } = await req.json();
+  const { email } = await req.json();
   if (!email) return NextResponse.json({ error: 'Email required' }, { status: 400 });
 
-  try {
-    await fetch(`${BACKEND}/product-feedback`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        type: 'suggestion',
-        message: `Waitlist signup (${role ?? 'family'})`,
-        email,
-        page: '/',
-      }),
-    });
-  } catch { /* best-effort */ }
+  if (RESEND_KEY) {
+    try {
+      await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${RESEND_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: 'Slingshot Waitlist <noreply@slingshotiep.com>',
+          to: 'hello@slingshotiep.com',
+          subject: `Waitlist signup: ${email}`,
+          html: `<p>New waitlist signup from <strong>slingshotiep.com</strong>.</p><p><strong>Email:</strong> ${email}</p>`,
+        }),
+      });
+    } catch { /* best-effort */ }
+  }
 
   return NextResponse.json({ ok: true });
 }

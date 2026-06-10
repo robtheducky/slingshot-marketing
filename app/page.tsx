@@ -2,9 +2,12 @@
 
 import { useState } from 'react';
 import SlingshotLogo from '@/components/SlingshotLogo';
-import { DashboardMockup, PacketMockup, IepDetailMockup, GoalLoggingMobileMockup, MeetingPrepMobileMockup } from '@/components/ProductMockups';
+import { IepDetailMockup, PacketMockup, GoalLoggingMobileMockup, MeetingPrepMobileMockup } from '@/components/ProductMockups';
 
-function WaitlistForm({ className = '', light = false }: { className?: string; light?: boolean }) {
+const SIGNIN_URL = 'https://app.slingshotiep.com/parent?signin=1';
+const APP_STORE_URL = 'https://apps.apple.com/us/app/slingshot-iep/id6763329479';
+
+function WaitlistForm({ className = '' }: { className?: string }) {
   const [email,  setEmail]  = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
 
@@ -25,7 +28,7 @@ function WaitlistForm({ className = '', light = false }: { className?: string; l
   }
 
   if (status === 'done') {
-    return <p className={`text-sm font-medium ${light ? 'text-[#A7F3D0]' : 'text-[#059669]'} ${className}`}>You're on the list. We'll be in touch.</p>;
+    return <p className="text-sm font-medium text-[#059669]">You're on the list. We'll be in touch.</p>;
   }
 
   return (
@@ -37,20 +40,12 @@ function WaitlistForm({ className = '', light = false }: { className?: string; l
           value={email}
           onChange={e => setEmail(e.target.value)}
           placeholder="your@email.com"
-          className={`flex-1 rounded-lg border px-4 py-2.5 text-sm focus:outline-none focus:ring-2 ${
-            light
-              ? 'border-white/20 bg-white/10 text-white placeholder-white/40 focus:border-white/40 focus:ring-white/10'
-              : 'border-[#E8DFD0] bg-white text-[#2F2F2F] placeholder-[#C4B9A8] focus:border-[#D97706] focus:ring-[#D97706]/20'
-          }`}
+          className="flex-1 rounded-lg border border-[#E8DFD0] bg-white text-[#2F2F2F] placeholder-[#C4B9A8] px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:border-[#D97706] focus:ring-[#D97706]/20"
         />
         <button
           type="submit"
           disabled={status === 'submitting' || !email.trim()}
-          className={`rounded-lg px-5 py-2.5 text-sm font-semibold disabled:opacity-50 transition-colors whitespace-nowrap ${
-            light
-              ? 'bg-white text-[#D97706] hover:bg-[#FEF3C7]'
-              : 'bg-[#D97706] text-white hover:bg-[#B45309]'
-          }`}
+          className="rounded-lg px-5 py-2.5 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] disabled:opacity-50 transition-colors whitespace-nowrap"
         >
           {status === 'submitting' ? 'Joining...' : 'Join the waitlist'}
         </button>
@@ -71,19 +66,17 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6 h-14 flex items-center justify-between">
           <SlingshotLogo size="sm" />
           <div className="hidden sm:flex items-center gap-7">
-            <a href="#how-it-works" className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">How it works</a>
-            <a href="#product"      className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">See it</a>
-            <a href="#advocates"    className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">For advocates</a>
-            <a href="#about"        className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">About</a>
-            <a href="https://app.slingshotiep.com/iep" className="text-xs font-semibold text-[#D97706] hover:text-[#B45309] transition-colors">Sign in</a>
+            <a href="#product"   className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">See it in action</a>
+            <a href="#advocates" className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">For advocates</a>
+            <a href="#about"     className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">About</a>
+            <a href={SIGNIN_URL} className="text-xs font-semibold text-[#D97706] hover:text-[#B45309] transition-colors">Sign in</a>
           </div>
-          <a href="https://app.slingshotiep.com/iep" className="sm:hidden text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">Sign in</a>
+          <a href={SIGNIN_URL} className="sm:hidden text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">Sign in</a>
         </div>
       </nav>
 
       {/* Hero */}
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-28">
-        {/* TODO: add a warm candid photo (parent + child at table) to the right of this text */}
         <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.06] tracking-tight mb-6">
           No parent should walk into an IEP meeting alone.
         </h1>
@@ -94,7 +87,7 @@ export default function HomePage() {
         <p className="mt-3 text-xs text-[#B8AFA5]">Free to start. For families and advocates.</p>
       </section>
 
-      {/* Stat — dark section, high contrast */}
+      {/* Stat — dark section */}
       <section className="bg-[#2D2A26] py-20">
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex flex-col sm:flex-row sm:items-baseline gap-4 sm:gap-12 mb-16">
@@ -123,73 +116,68 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* How it works */}
-      <section id="how-it-works" className="py-20">
-        <div className="mx-auto max-w-6xl px-6">
-          {/* TODO: add app screenshot / phone mockup to the right of these steps */}
-          <p className="text-2xl font-bold mb-12 max-w-xs leading-snug">
-            Preparation that starts with your child's strengths.
-          </p>
-          <ol className="space-y-8 max-w-xs">
-            {([
-              { n: '01', title: 'Upload your IEP',   body: 'Every goal, service, and accommodation — analyzed and flagged.' },
-              { n: '02', title: 'Build your agenda',  body: 'A few questions. A structured meeting plan in return.' },
-              { n: '03', title: 'Walk in ready',      body: 'Your packet in the app or printed.' },
-            ] as const).map(s => (
-              <li key={s.n} className="flex gap-5 items-start">
-                <span className="text-xs font-bold text-[#D97706] tabular-nums pt-0.5 shrink-0">{s.n}</span>
-                <div>
-                  <p className="font-semibold">{s.title}</p>
-                  <p className="text-sm text-[#6B6B6B] mt-0.5 leading-relaxed">{s.body}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
       {/* Product showcase */}
       <section id="product" className="border-t border-[#EAE4DB] py-20 bg-white">
-        <div className="mx-auto max-w-6xl px-6">
-          <p className="text-2xl font-bold mb-3 leading-snug">See what you get on day one.</p>
-          <p className="text-base text-[#6B6B6B] leading-relaxed max-w-sm mb-16">
-            Upload your child's IEP. Slingshot flags what matters, explains what's missing, and prepares you for the room.
-          </p>
+        <div className="mx-auto max-w-5xl px-6">
 
-          {/* Feature: IEP decoded */}
-          <div className="flex flex-col lg:flex-row items-start gap-12 mb-20">
-            <div className="flex-1 pt-4 max-w-xs">
-              <p className="text-[8px] font-bold uppercase tracking-widest text-[#D97706] mb-2">Your IEP, decoded</p>
-              <p className="text-xl font-bold leading-snug mb-3">Every goal, service, and gap — in plain language.</p>
-              <p className="text-sm text-[#6B6B6B] leading-relaxed">
-                Slingshot reads your IEP and surfaces what matters: goals without baselines, services reduced from last year, areas of need with no supporting goal.
-              </p>
+          {/* Feature 1: IEP decoded */}
+          <div className="mb-24">
+            <p className="text-[8px] font-bold uppercase tracking-widest text-[#D97706] mb-2">Your IEP, decoded</p>
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+              <p className="text-2xl font-bold leading-snug max-w-sm">Every goal, service, and gap in plain language.</p>
+              <a
+                href={SIGNIN_URL}
+                className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-[#D97706] hover:text-[#B45309] transition-colors"
+              >
+                Open in web app
+                <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </a>
             </div>
-            <IepDetailMockup className="w-[300px] shrink-0" />
+            <IepDetailMockup className="w-full" />
+            <p className="text-sm text-[#6B6B6B] leading-relaxed mt-5 max-w-lg">
+              Slingshot reads your IEP and surfaces what matters: goals without baselines, services reduced from last year, areas of need with no supporting goal.
+            </p>
           </div>
 
-          {/* Feature: Meeting prep */}
-          <div className="flex flex-col-reverse lg:flex-row items-start gap-12 mb-16">
-            <PacketMockup className="w-[300px] shrink-0" />
-            <div className="flex-1 pt-4 max-w-xs">
-              <p className="text-[8px] font-bold uppercase tracking-widest text-[#D97706] mb-2">Your meeting plan</p>
-              <p className="text-xl font-bold leading-snug mb-3">Know exactly what to say before you sit down.</p>
-              <p className="text-sm text-[#6B6B6B] leading-relaxed">
-                Answer a few questions about your child. Slingshot builds a prioritized agenda with the right language, grounded in your IEP.
-              </p>
+          {/* Feature 2: Meeting prep */}
+          <div className="mb-24 border-t border-[#F0EBE3] pt-20">
+            <p className="text-[8px] font-bold uppercase tracking-widest text-[#D97706] mb-2">Your meeting plan</p>
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+              <p className="text-2xl font-bold leading-snug max-w-sm">Know exactly what to say before you sit down.</p>
+              <a
+                href={SIGNIN_URL}
+                className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-[#D97706] hover:text-[#B45309] transition-colors"
+              >
+                Open in web app
+                <svg className="w-3.5 h-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+              </a>
             </div>
+            <PacketMockup className="w-full" />
+            <p className="text-sm text-[#6B6B6B] leading-relaxed mt-5 max-w-lg">
+              Answer a few questions about your child. Slingshot builds a prioritized agenda with the right language, grounded in your IEP.
+            </p>
           </div>
 
-          {/* Mobile: goal logging + live meeting */}
-          <div className="border-t border-[#F0EBE3] pt-16">
+          {/* Feature 3: Mobile */}
+          <div className="border-t border-[#F0EBE3] pt-20">
             <p className="text-[8px] font-bold uppercase tracking-widest text-[#9FB7C8] mb-2">On your phone</p>
-            <p className="text-xl font-bold leading-snug mb-10 max-w-xs">Log observations. Track progress. Follow along live.</p>
-            <div className="flex flex-col sm:flex-row gap-10 items-start">
-              <div className="flex gap-5 items-start shrink-0">
-                <GoalLoggingMobileMockup />
-                <MeetingPrepMobileMockup />
-              </div>
-              <div className="pt-2 space-y-6 max-w-xs">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+              <p className="text-2xl font-bold leading-snug max-w-sm">Log observations. Follow along live.</p>
+              <a
+                href={`sms:?&body=Download Slingshot IEP for iOS: ${APP_STORE_URL}`}
+                className="shrink-0 inline-flex items-center gap-1.5 text-sm font-semibold text-[#9FB7C8] hover:text-[#8BA5B5] transition-colors"
+              >
+                <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="5" y="1.5" width="10" height="17" rx="2" />
+                  <line x1="9" y1="15.5" x2="11" y2="15.5" />
+                </svg>
+                Text a link to your phone
+              </a>
+            </div>
+            <div className="flex gap-6 items-start overflow-x-auto pb-2">
+              <GoalLoggingMobileMockup />
+              <MeetingPrepMobileMockup />
+              <div className="hidden sm:flex flex-col gap-6 pt-4 max-w-xs shrink-0">
                 <div>
                   <p className="text-sm font-semibold mb-1">Keep notes between meetings.</p>
                   <p className="text-sm text-[#6B6B6B] leading-relaxed">Log what you observe at home so you walk in with more than your memory.</p>
@@ -198,13 +186,10 @@ export default function HomePage() {
                   <p className="text-sm font-semibold mb-1">Follow your agenda live.</p>
                   <p className="text-sm text-[#6B6B6B] leading-relaxed">Check off talking points as the meeting moves. Nothing falls through the cracks.</p>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold mb-1">Track goal progress over time.</p>
-                  <p className="text-sm text-[#6B6B6B] leading-relaxed">See how far your child has come and what's still ahead at the next review.</p>
-                </div>
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -224,7 +209,6 @@ export default function HomePage() {
       {/* About */}
       <section id="about" className="border-t border-[#EAE4DB] py-20">
         <div className="mx-auto max-w-6xl px-6">
-          {/* TODO: add photos of Rob and Maddie here — headshots, warm and candid */}
           <p className="text-2xl font-bold mb-4">Built from the inside.</p>
           <p className="text-base text-[#6B6B6B] leading-relaxed max-w-sm">
             Rob Martin is a healthcare product leader and parent of a child with a disability. Maddie Magnusson has sat in more than 50 IEP meetings as a social-emotional learning specialist across DC, Maryland, and Virginia. Slingshot is what they built after sitting on both sides of the table.
@@ -232,19 +216,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Bottom CTA — amber wash */}
-      <section className="bg-[#D97706] py-24">
+      {/* Bottom CTA — slate */}
+      <section className="bg-[#9FB7C8] py-24">
         <div className="mx-auto max-w-6xl px-6">
-          <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-3 max-w-sm text-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold leading-tight mb-3 max-w-sm text-[#2D2A26]">
             The right support at 6 changes what's possible at 16.
           </h2>
-          <p className="text-base text-white/70 mb-8 max-w-xs leading-relaxed">
+          <p className="text-base text-[#2D2A26]/70 mb-8 max-w-xs leading-relaxed">
             Join families and advocates preparing for what matters most.
           </p>
-          <WaitlistForm className="max-w-sm" light />
-          <p className="mt-4 text-xs text-white/40">
+          <WaitlistForm className="max-w-sm" />
+          <p className="mt-4 text-xs text-[#2D2A26]/40">
             Already have an account?{' '}
-            <a href="https://app.slingshotiep.com/iep" className="text-white/70 hover:text-white underline">Sign in</a>
+            <a href={SIGNIN_URL} className="text-[#2D2A26]/60 hover:text-[#2D2A26] underline">Sign in</a>
           </p>
         </div>
       </section>
