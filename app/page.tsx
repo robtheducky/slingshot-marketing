@@ -59,11 +59,18 @@ function ProContactForm({ className = '' }: { className?: string }) {
 
 const WEB_SLIDES = [
   {
+    label: 'Your dashboard',
+    heading: "Everything about your child's IEP, in one place.",
+    body: 'Slingshot surfaces what needs attention: gaps in goals, services to track, and your next step, the moment you log in.',
+    cta: 'Try it with your IEP',
+    screenshot: '/web/dashboard.png',
+    Mockup: null,
+  },
+  {
     label: 'Your IEP, decoded',
     heading: 'Every goal, service, and gap in plain language.',
     body: 'Slingshot reads your IEP and surfaces what matters: goals without baselines, services reduced from last year, areas of need with no supporting goal.',
     cta: 'Try it with your IEP',
-    // Drop a real screenshot at public/web/iep-detail.png to replace the code mockup
     screenshot: '/web/iep-detail.png',
     Mockup: IepDetailMockup,
   },
@@ -72,14 +79,14 @@ const WEB_SLIDES = [
     heading: 'Know exactly what to say before you sit down.',
     body: 'Answer a few questions about your child. Slingshot builds a prioritized agenda with the right language, grounded in your IEP.',
     cta: 'Start your meeting prep',
-    screenshot: '/web/packet.png',
+    screenshot: null,
     Mockup: PacketMockup,
   },
-] as const;
+];
 
 function WebAppCarousel() {
   const [idx, setIdx] = useState(0);
-  const s = WEB_SLIDES[idx];
+  const s = WEB_SLIDES[idx] as typeof WEB_SLIDES[number];
 
   return (
     <div>
@@ -121,7 +128,14 @@ function WebAppCarousel() {
       </div>
 
       {/* Slide content */}
-      <s.Mockup className="w-full" />
+      {s.screenshot ? (
+        <BrowserFrame className="w-full">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={s.screenshot} alt={s.label} className="w-full block" />
+        </BrowserFrame>
+      ) : s.Mockup ? (
+        <s.Mockup className="w-full" />
+      ) : null}
 
       <p className="text-sm text-[#6B6B6B] leading-relaxed mt-5 max-w-lg">{s.body}</p>
 
