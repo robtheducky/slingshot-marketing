@@ -5,7 +5,59 @@ import SlingshotLogo from '@/components/SlingshotLogo';
 import { IepDetailMockup, PacketMockup, BrowserFrame } from '@/components/ProductMockups';
 
 const SIGNIN_URL = 'https://app.slingshotiep.com/parent?signin=1';
-const APP_STORE_URL = 'https://apps.apple.com/us/app/slingshot-iep/id6763329479';
+
+function TextMeForm({ className = '' }: { className?: string }) {
+  const [phone, setPhone] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!phone.trim()) return;
+    setStatus('submitting');
+    try {
+      await fetch('/api/sms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone }),
+      });
+      setStatus('done');
+    } catch {
+      setStatus('error');
+    }
+  }
+
+  if (status === 'done') {
+    return (
+      <p className="text-sm font-medium text-[#059669] shrink-0">
+        Got it. Link on its way.
+      </p>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className={`flex flex-col sm:flex-row gap-2 shrink-0 ${className}`}>
+      <input
+        type="tel"
+        required
+        value={phone}
+        onChange={e => setPhone(e.target.value)}
+        placeholder="Your phone number"
+        className="rounded-lg border border-[#E8DFD0] bg-white text-[#2F2F2F] placeholder-[#C4B9A8] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:border-[#9FB7C8] focus:ring-[#9FB7C8]/20 w-44"
+      />
+      <button
+        type="submit"
+        disabled={status === 'submitting' || !phone.trim()}
+        className="inline-flex items-center justify-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold bg-[#9FB7C8] text-white hover:bg-[#8BA5B5] disabled:opacity-50 transition-colors whitespace-nowrap"
+      >
+        <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="5" y="1.5" width="10" height="17" rx="2" />
+          <line x1="9" y1="15.5" x2="11" y2="15.5" />
+        </svg>
+        {status === 'submitting' ? 'Sending…' : 'Text me the app'}
+      </button>
+    </form>
+  );
+}
 
 function ProContactForm({ className = '' }: { className?: string }) {
   const [email, setEmail] = useState('');
@@ -261,16 +313,7 @@ export default function HomePage() {
             <p className="text-sm font-bold uppercase tracking-widest text-[#9FB7C8] mb-3">Only in the mobile app</p>
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
               <p className="text-2xl font-bold leading-snug max-w-md">You know your child better than anyone in that room.</p>
-              <a
-                href={`sms:?&body=Download Slingshot IEP for iOS: ${APP_STORE_URL}`}
-                className="shrink-0 inline-flex items-center gap-2 text-sm font-semibold bg-[#9FB7C8] text-white hover:bg-[#8BA5B5] transition-colors rounded-lg px-4 py-2"
-              >
-                <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="5" y="1.5" width="10" height="17" rx="2" />
-                  <line x1="9" y1="15.5" x2="11" y2="15.5" />
-                </svg>
-                Text the app to your phone
-              </a>
+              <TextMeForm />
             </div>
 
             <div className="flex flex-col lg:flex-row gap-12 items-start">
