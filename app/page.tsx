@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import SlingshotLogo from '@/components/SlingshotLogo';
+import { DashboardMockup, PacketMockup, IepDetailMockup, GoalLoggingMobileMockup, MeetingPrepMobileMockup } from '@/components/ProductMockups';
 
 function WaitlistForm({ className = '', light = false }: { className?: string; light?: boolean }) {
   const [email,  setEmail]  = useState('');
@@ -71,6 +72,7 @@ export default function HomePage() {
           <SlingshotLogo size="sm" />
           <div className="hidden sm:flex items-center gap-7">
             <a href="#how-it-works" className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">How it works</a>
+            <a href="#product"      className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">See it</a>
             <a href="#advocates"    className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">For advocates</a>
             <a href="#about"        className="text-xs text-[#9B9086] hover:text-[#2F2F2F] transition-colors">About</a>
             <a href="https://app.slingshotiep.com/iep" className="text-xs font-semibold text-[#D97706] hover:text-[#B45309] transition-colors">Sign in</a>
@@ -143,6 +145,66 @@ export default function HomePage() {
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* Product showcase */}
+      <section id="product" className="border-t border-[#EAE4DB] py-20 bg-white">
+        <div className="mx-auto max-w-6xl px-6">
+          <p className="text-2xl font-bold mb-3 leading-snug">See what you get on day one.</p>
+          <p className="text-base text-[#6B6B6B] leading-relaxed max-w-sm mb-16">
+            Upload your child's IEP. Slingshot flags what matters, explains what's missing, and prepares you for the room.
+          </p>
+
+          {/* Feature: IEP decoded */}
+          <div className="flex flex-col lg:flex-row items-start gap-12 mb-20">
+            <div className="flex-1 pt-4 max-w-xs">
+              <p className="text-[8px] font-bold uppercase tracking-widest text-[#D97706] mb-2">Your IEP, decoded</p>
+              <p className="text-xl font-bold leading-snug mb-3">Every goal, service, and gap — in plain language.</p>
+              <p className="text-sm text-[#6B6B6B] leading-relaxed">
+                Slingshot reads your IEP and surfaces what matters: goals without baselines, services reduced from last year, areas of need with no supporting goal.
+              </p>
+            </div>
+            <IepDetailMockup className="w-[300px] shrink-0" />
+          </div>
+
+          {/* Feature: Meeting prep */}
+          <div className="flex flex-col-reverse lg:flex-row items-start gap-12 mb-16">
+            <PacketMockup className="w-[300px] shrink-0" />
+            <div className="flex-1 pt-4 max-w-xs">
+              <p className="text-[8px] font-bold uppercase tracking-widest text-[#D97706] mb-2">Your meeting plan</p>
+              <p className="text-xl font-bold leading-snug mb-3">Know exactly what to say before you sit down.</p>
+              <p className="text-sm text-[#6B6B6B] leading-relaxed">
+                Answer a few questions about your child. Slingshot builds a prioritized agenda with the right language, grounded in your IEP.
+              </p>
+            </div>
+          </div>
+
+          {/* Mobile: goal logging + live meeting */}
+          <div className="border-t border-[#F0EBE3] pt-16">
+            <p className="text-[8px] font-bold uppercase tracking-widest text-[#9FB7C8] mb-2">On your phone</p>
+            <p className="text-xl font-bold leading-snug mb-10 max-w-xs">Log observations. Track progress. Follow along live.</p>
+            <div className="flex flex-col sm:flex-row gap-10 items-start">
+              <div className="flex gap-5 items-start shrink-0">
+                <GoalLoggingMobileMockup />
+                <MeetingPrepMobileMockup />
+              </div>
+              <div className="pt-2 space-y-6 max-w-xs">
+                <div>
+                  <p className="text-sm font-semibold mb-1">Keep notes between meetings.</p>
+                  <p className="text-sm text-[#6B6B6B] leading-relaxed">Log what you observe at home so you walk in with more than your memory.</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold mb-1">Follow your agenda live.</p>
+                  <p className="text-sm text-[#6B6B6B] leading-relaxed">Check off talking points as the meeting moves. Nothing falls through the cracks.</p>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold mb-1">Track goal progress over time.</p>
+                  <p className="text-sm text-[#6B6B6B] leading-relaxed">See how far your child has come and what's still ahead at the next review.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
