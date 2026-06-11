@@ -127,14 +127,6 @@ const WEB_SLIDES = [
     Mockup: null,
   },
   {
-    label: 'Understand every service',
-    heading: 'Who shows up for your child, how often, and where.',
-    body: "The confirmation wizard explains each service in plain language and flags what to double-check. \"Monthly\" and \"weekly\" look similar on paper but are very different in practice.",
-    cta: 'Try it with your IEP',
-    screenshot: '/web/screenshot-confirm-services.png',
-    Mockup: null,
-  },
-  {
     label: 'Every accommodation, verified',
     heading: 'Make sure the adjustments in the plan are actually happening.',
     body: 'Slingshot lists every accommodation from your IEP and explains what it means in practice. At your next meeting, ask how each one is being communicated to every teacher.',
