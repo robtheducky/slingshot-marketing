@@ -109,27 +109,37 @@ function ProContactForm({ className = '' }: { className?: string }) {
   );
 }
 
-const WEB_SLIDES = [
+type Slide = {
+  label: string;
+  heading: string;
+  body: string;
+  cta: string;
+  screenshot: string;
+  mobileScreenshot?: string;
+};
+
+const WEB_SLIDES: Slide[] = [
   {
-    label: 'Your IEP at a glance',
-    heading: '15 hours a week. 4 goals. 11 accommodations.',
-    body: 'Upload your IEP and Slingshot shows you what your child is receiving, in plain numbers. No more searching through 30-page documents to find the answer.',
+    label: 'YOUR IEP, ORGANIZED',
+    heading: 'Stop scanning. Start advocating.',
+    body: 'Upload your IEP and Slingshot reads it for you — every goal, service, and accommodation, explained in plain language. No more flipping through 24 loose pages. That energy goes to your child.',
     cta: 'Try it with your IEP',
-    screenshot: '/web/screenshot-dashboard.png',
+    screenshot: '/web/screenshot-confirm-iep.png',
   },
   {
-    label: 'Your meeting prep',
-    heading: 'Know exactly what to say before you sit down.',
-    body: 'Rate each goal, review your roadmap, and get talking points grounded in your IEP. Slingshot counts down to your next review and walks you through everything.',
-    cta: 'Start your meeting prep',
-    screenshot: '/web/screenshot-prep.png',
+    label: 'STAY ON TOP OF THE CHAOS',
+    heading: 'You deserve to feel all caught up.',
+    body: 'Progress reports, therapy updates, school emails — it never stops. Slingshot pulls it together into a status you can actually trust. When it says Looking good, it means it.',
+    cta: 'Try it with your IEP',
+    screenshot: '/web/screenshot-chaos-dashboard.png',
   },
   {
-    label: 'Every accommodation, verified',
-    heading: 'Make sure the adjustments in the plan are actually happening.',
-    body: 'Slingshot lists every accommodation from your IEP and explains what it means in practice. At your next meeting, ask how each one is being communicated to every teacher.',
-    cta: 'Try it with your IEP',
-    screenshot: '/web/screenshot-confirm-accommodations.png',
+    label: 'YOUR STORY',
+    heading: 'What you see at home belongs in the meeting.',
+    body: 'Log daily observations on your phone. Connect therapy notes and progress reports. Slingshot carries it all into your meeting prep, so the team hears the full picture — not just the school\'s version.',
+    cta: 'Build your story',
+    screenshot: '/web/screenshot-your-story-web.png',
+    mobileScreenshot: '/web/screenshot-your-story-mobile.png',
   },
 ];
 
@@ -177,7 +187,16 @@ function WebAppCarousel() {
       </div>
 
       {/* Slide content */}
-      {s.screenshot ? (
+      {s.mobileScreenshot ? (
+        <div className="flex gap-3 items-end">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={s.mobileScreenshot} alt="mobile app" className="w-[28%] shrink-0 rounded-2xl shadow-md" />
+          <BrowserFrame className="flex-1">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={s.screenshot} alt={s.label} className="w-full block" />
+          </BrowserFrame>
+        </div>
+      ) : s.screenshot ? (
         <BrowserFrame className="w-full">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={s.screenshot} alt={s.label} className="w-full block" />
@@ -275,7 +294,7 @@ export default function HomePage() {
           No parent should walk into an IEP meeting alone.
         </h1>
         <p className="text-lg text-[#6B6B6B] leading-relaxed max-w-sm mb-10">
-          Slingshot turns what you know about your child into a meeting agenda that's ready for the room.
+          Slingshot helps you build the record that changes your child's arc.
         </p>
         <div className="flex flex-col sm:flex-row gap-3">
           <a
