@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import SlingshotLogo from '@/components/SlingshotLogo';
-import { IepDetailMockup, PacketMockup, BrowserFrame } from '@/components/ProductMockups';
+import { BrowserFrame } from '@/components/ProductMockups';
 
 const SIGNIN_URL = 'https://app.slingshotiep.com/parent?signin=1';
 
@@ -111,28 +111,36 @@ function ProContactForm({ className = '' }: { className?: string }) {
 
 const WEB_SLIDES = [
   {
-    label: 'Your dashboard',
-    heading: "Everything about your child's IEP, in one place.",
-    body: 'Slingshot surfaces what needs attention: gaps in goals, services to track, and your next step, the moment you log in.',
+    label: 'Your IEP at a glance',
+    heading: '15 hours a week. 4 goals. 11 accommodations.',
+    body: 'Upload your IEP and Slingshot shows you what your child is receiving, in plain numbers. No more searching through 30-page documents to find the answer.',
     cta: 'Try it with your IEP',
-    screenshot: '/web/dashboard.png',
+    screenshot: '/web/screenshot-dashboard.png',
     Mockup: null,
   },
   {
-    label: 'Your IEP, decoded',
-    heading: 'Every goal, service, and gap in plain language.',
-    body: 'Slingshot reads your IEP and surfaces what matters: goals without baselines, services reduced from last year, areas of need with no supporting goal.',
-    cta: 'Try it with your IEP',
-    screenshot: '/web/iep-detail.png',
-    Mockup: IepDetailMockup,
+    label: 'Your meeting prep',
+    heading: 'Know exactly what to say before you sit down.',
+    body: 'Rate each goal, review your roadmap, and get talking points grounded in your IEP. Slingshot counts down to your next review and walks you through everything.',
+    cta: 'Start your meeting prep',
+    screenshot: '/web/screenshot-prep.png',
+    Mockup: null,
   },
   {
-    label: 'Your meeting plan',
-    heading: 'Know exactly what to say before you sit down.',
-    body: 'Answer a few questions about your child. Slingshot builds a prioritized agenda with the right language, grounded in your IEP.',
-    cta: 'Start your meeting prep',
-    screenshot: null,
-    Mockup: PacketMockup,
+    label: 'Understand every service',
+    heading: 'Who shows up for your child, how often, and where.',
+    body: "The confirmation wizard explains each service in plain language and flags what to double-check. \"Monthly\" and \"weekly\" look similar on paper but are very different in practice.",
+    cta: 'Try it with your IEP',
+    screenshot: '/web/screenshot-confirm-services.png',
+    Mockup: null,
+  },
+  {
+    label: 'Every accommodation, verified',
+    heading: 'Make sure the adjustments in the plan are actually happening.',
+    body: 'Slingshot lists every accommodation from your IEP and explains what it means in practice. At your next meeting, ask how each one is being communicated to every teacher.',
+    cta: 'Try it with your IEP',
+    screenshot: '/web/screenshot-confirm-accommodations.png',
+    Mockup: null,
   },
 ];
 
