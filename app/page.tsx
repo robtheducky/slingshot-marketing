@@ -122,21 +122,21 @@ const WEB_SLIDES: Slide[] = [
   {
     label: 'YOUR IEP, ORGANIZED',
     heading: 'Stop scanning. Start advocating.',
-    body: 'Upload your IEP and Slingshot reads it for you — every goal, service, and accommodation, explained in plain language. No more flipping through 24 loose pages. That energy goes to your child.',
+    body: 'Upload your IEP and Slingshot reads it for you: every goal, service, and accommodation, explained in plain language. No more flipping through 24 loose pages. That energy goes to your child.',
     cta: 'Try it with your IEP',
     screenshot: '/web/screenshot-confirm-iep.png',
   },
   {
     label: 'STAY ON TOP OF THE CHAOS',
     heading: 'You deserve to feel all caught up.',
-    body: 'Progress reports, therapy updates, school emails — it never stops. Slingshot pulls it together into a status you can actually trust. When it says Looking good, it means it.',
+    body: 'Progress reports, therapy updates, school emails. It never stops. Slingshot pulls it together into a status you can actually trust. When it says Looking good, it means it.',
     cta: 'Try it with your IEP',
     screenshot: '/web/screenshot-chaos-dashboard.png',
   },
   {
     label: 'YOUR STORY',
     heading: 'What you see at home belongs in the meeting.',
-    body: 'Log daily observations on your phone. Connect therapy notes and progress reports. Slingshot carries it all into your meeting prep, so the team hears the full picture — not just the school\'s version.',
+    body: 'Log daily observations on your phone. Connect therapy notes and progress reports. Slingshot carries it all into your meeting prep, so the team hears the full picture, not just the school\'s version.',
     cta: 'Build your story',
     screenshot: '/web/screenshot-your-story-web.png',
     mobileScreenshot: '/web/screenshot-your-story-mobile.png',
@@ -186,6 +186,8 @@ function WebAppCarousel() {
         </div>
       </div>
 
+      <p className="text-base text-[#4B4540] leading-relaxed mb-6 max-w-lg">{s.body}</p>
+
       {/* Slide content */}
       {s.mobileScreenshot ? (
         <div className="flex gap-3 items-end">
@@ -202,8 +204,6 @@ function WebAppCarousel() {
           <img src={s.screenshot} alt={s.label} className="w-full block" />
         </BrowserFrame>
       ) : null}
-
-      <p className="text-sm text-[#6B6B6B] leading-relaxed mt-5 max-w-lg">{s.body}</p>
 
       {/* Dot indicators */}
       <div className="flex gap-1.5 mt-5">
@@ -348,11 +348,11 @@ export default function HomePage() {
               {/* Copy */}
               <div className="space-y-6 max-w-sm pt-2">
                 <p className="text-sm text-[#6B6B6B] leading-relaxed">
-                  Teachers see your child for a few hours a week. You see them every day. Log what you notice — what's improving, what's still hard, what you want the team to know.
+                  Teachers see your child for a few hours a week. You see them every day. Log what you notice: what's improving, what's still hard, what you want the team to know.
                 </p>
                 <div>
                   <p className="text-sm font-semibold mb-1">Your observations, connected to their goals.</p>
-                  <p className="text-sm text-[#6B6B6B] leading-relaxed">Slingshot maps your notes to IEP goals over time, so you don't just show up with feelings — you show up with a record.</p>
+                  <p className="text-sm text-[#6B6B6B] leading-relaxed">Slingshot maps your notes to IEP goals over time, so you don't just show up with feelings. You show up with a record.</p>
                 </div>
                 <div>
                   <p className="text-sm font-semibold mb-1">The evidence that changes the IEP.</p>
