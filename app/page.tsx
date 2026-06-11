@@ -116,7 +116,6 @@ const WEB_SLIDES = [
     body: 'Upload your IEP and Slingshot shows you what your child is receiving, in plain numbers. No more searching through 30-page documents to find the answer.',
     cta: 'Try it with your IEP',
     screenshot: '/web/screenshot-dashboard.png',
-    Mockup: null,
   },
   {
     label: 'Your meeting prep',
@@ -124,7 +123,6 @@ const WEB_SLIDES = [
     body: 'Rate each goal, review your roadmap, and get talking points grounded in your IEP. Slingshot counts down to your next review and walks you through everything.',
     cta: 'Start your meeting prep',
     screenshot: '/web/screenshot-prep.png',
-    Mockup: null,
   },
   {
     label: 'Every accommodation, verified',
@@ -132,7 +130,6 @@ const WEB_SLIDES = [
     body: 'Slingshot lists every accommodation from your IEP and explains what it means in practice. At your next meeting, ask how each one is being communicated to every teacher.',
     cta: 'Try it with your IEP',
     screenshot: '/web/screenshot-confirm-accommodations.png',
-    Mockup: null,
   },
 ];
 
@@ -185,8 +182,6 @@ function WebAppCarousel() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={s.screenshot} alt={s.label} className="w-full block" />
         </BrowserFrame>
-      ) : s.Mockup ? (
-        <s.Mockup className="w-full" />
       ) : null}
 
       <p className="text-sm text-[#6B6B6B] leading-relaxed mt-5 max-w-lg">{s.body}</p>
