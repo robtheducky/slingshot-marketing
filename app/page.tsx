@@ -348,7 +348,7 @@ export default function HomePage() {
               {/* Copy */}
               <div className="space-y-6 max-w-sm pt-2">
                 <p className="text-sm text-[#6B6B6B] leading-relaxed">
-                  Teachers see your child for a few hours a week. You see them every day. Log what you notice: what's improving, what's still hard, what you want the team to know.
+                  The school team has their part of the picture. Your daily observations complete it. Log what you notice: what's improving, what's still hard, what you want the team to know.
                 </p>
                 <div>
                   <p className="text-sm font-semibold mb-1">Your observations, connected to their goals.</p>
