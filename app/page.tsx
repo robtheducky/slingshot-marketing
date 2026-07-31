@@ -227,6 +227,7 @@ const team = [
     role: 'Co-founder',
     bio: 'Healthcare product leader and parent of a child with a disability.',
     color: '#D97706',
+    photo: '/team/rob-martin.jpg',
   },
   {
     initials: 'MM',
@@ -234,7 +235,16 @@ const team = [
     role: 'Co-founder',
     bio: 'Social-emotional learning specialist. 50+ IEP meetings across DC, Maryland, and Virginia.',
     color: '#9FB7C8',
+    // photo: '/team/maddie-magnusson.jpg',
   },
+  // {
+  //   initials: 'GZ',
+  //   name: 'Greg Zorbas',
+  //   role: 'Founding Advisor',
+  //   bio: '', // TODO: add Greg's bio
+  //   color: '#059669',
+  //   // photo: '/team/greg-zorbas.jpg',
+  // },
 ];
 
 function TeamCarousel() {
@@ -245,12 +255,20 @@ function TeamCarousel() {
       <div className="flex gap-5 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-none">
         {team.map((p) => (
           <div key={p.name} className="snap-start shrink-0 w-64 bg-white rounded-2xl border border-[#E8DFD0] p-5 flex flex-col gap-4">
-            <div
-              className="w-14 h-14 rounded-full flex items-center justify-center text-white text-lg font-extrabold"
-              style={{ backgroundColor: p.color }}
-            >
-              {p.initials}
-            </div>
+            {p.photo ? (
+              <img
+                src={p.photo}
+                alt={p.name}
+                className="w-16 h-16 rounded-full object-cover"
+              />
+            ) : (
+              <div
+                className="w-16 h-16 rounded-full flex items-center justify-center text-white text-lg font-extrabold"
+                style={{ backgroundColor: p.color }}
+              >
+                {p.initials}
+              </div>
+            )}
             <div>
               <p className="font-bold text-[#2F2F2F]">{p.name}</p>
               <p className="text-xs text-[#9B9086] mb-2">{p.role}</p>
@@ -260,7 +278,7 @@ function TeamCarousel() {
         ))}
         {/* Placeholder */}
         <div className="snap-start shrink-0 w-64 bg-[#FDFBF8] rounded-2xl border border-dashed border-[#E8DFD0] p-5 flex flex-col items-center justify-center gap-2 text-center">
-          <div className="w-14 h-14 rounded-full bg-[#F0EBE3] flex items-center justify-center">
+          <div className="w-16 h-16 rounded-full bg-[#F0EBE3] flex items-center justify-center">
             <span className="text-[#B8AFA5] text-xl">+</span>
           </div>
           <p className="text-sm text-[#B8AFA5]">More coming soon</p>
