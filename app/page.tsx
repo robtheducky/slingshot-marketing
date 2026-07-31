@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import SlingshotLogo from '@/components/SlingshotLogo';
 import { BrowserFrame } from '@/components/ProductMockups';
 
@@ -35,27 +36,33 @@ function TextMeForm({ className = '' }: { className?: string }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`flex flex-col sm:flex-row gap-2 shrink-0 ${className}`}>
-      <input
-        type="tel"
-        required
-        value={phone}
-        onChange={e => setPhone(e.target.value)}
-        placeholder="Your phone number"
-        className="rounded-lg border border-[#E8DFD0] bg-white text-[#2F2F2F] placeholder-[#C4B9A8] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:border-[#9FB7C8] focus:ring-[#9FB7C8]/20 w-44"
-      />
-      <button
-        type="submit"
-        disabled={status === 'submitting' || !phone.trim()}
-        className="inline-flex items-center justify-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold bg-[#9FB7C8] text-white hover:bg-[#8BA5B5] disabled:opacity-50 transition-colors whitespace-nowrap"
-      >
-        <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="5" y="1.5" width="10" height="17" rx="2" />
-          <line x1="9" y1="15.5" x2="11" y2="15.5" />
-        </svg>
-        {status === 'submitting' ? 'Sending…' : 'Text me the app'}
-      </button>
-    </form>
+    <div className={`flex flex-col gap-2 shrink-0 ${className}`}>
+      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
+        <input
+          type="tel"
+          required
+          value={phone}
+          onChange={e => setPhone(e.target.value)}
+          placeholder="Your phone number"
+          className="rounded-lg border border-[#E8DFD0] bg-white text-[#2F2F2F] placeholder-[#C4B9A8] px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:border-[#9FB7C8] focus:ring-[#9FB7C8]/20 w-44"
+        />
+        <button
+          type="submit"
+          disabled={status === 'submitting' || !phone.trim()}
+          className="inline-flex items-center justify-center gap-1.5 rounded-lg px-4 py-2 text-sm font-semibold bg-[#9FB7C8] text-white hover:bg-[#8BA5B5] disabled:opacity-50 transition-colors whitespace-nowrap"
+        >
+          <svg className="w-3.5 h-3.5" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="5" y="1.5" width="10" height="17" rx="2" />
+            <line x1="9" y1="15.5" x2="11" y2="15.5" />
+          </svg>
+          {status === 'submitting' ? 'Sending…' : 'Text me the app'}
+        </button>
+      </form>
+      <p className="text-xs text-[#B8AFA5] max-w-xs leading-relaxed">
+        By submitting, you agree to receive one text message with a link to the app. Msg and data rates may apply. Reply STOP to opt out, HELP for help. See our{' '}
+        <Link href="/privacy" className="underline hover:text-[#9B9086]">Privacy Policy</Link>.
+      </p>
+    </div>
   );
 }
 
