@@ -259,11 +259,11 @@ function TeamCarousel() {
               <img
                 src={p.photo}
                 alt={p.name}
-                className="w-16 h-16 rounded-full object-cover"
+                className="w-24 h-24 rounded-full object-cover"
               />
             ) : (
               <div
-                className="w-16 h-16 rounded-full flex items-center justify-center text-white text-lg font-extrabold"
+                className="w-24 h-24 rounded-full flex items-center justify-center text-white text-2xl font-extrabold"
                 style={{ backgroundColor: p.color }}
               >
                 {p.initials}
@@ -278,8 +278,8 @@ function TeamCarousel() {
         ))}
         {/* Placeholder */}
         <div className="snap-start shrink-0 w-64 bg-[#FDFBF8] rounded-2xl border border-dashed border-[#E8DFD0] p-5 flex flex-col items-center justify-center gap-2 text-center">
-          <div className="w-16 h-16 rounded-full bg-[#F0EBE3] flex items-center justify-center">
-            <span className="text-[#B8AFA5] text-xl">+</span>
+          <div className="w-24 h-24 rounded-full bg-[#F0EBE3] flex items-center justify-center">
+            <span className="text-[#B8AFA5] text-2xl">+</span>
           </div>
           <p className="text-sm text-[#B8AFA5]">More coming soon</p>
         </div>
@@ -397,7 +397,7 @@ export default function HomePage() {
       {/* About — team carousel */}
       <section id="about" className="border-t border-[#EAE4DB] py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <p className="text-2xl font-bold mb-2">Built from the inside.</p>
+          <p className="text-2xl font-bold mb-2">We've been in your seat.</p>
           <p className="text-sm text-[#9B9086] mb-8">The team that built Slingshot has sat on both sides of the IEP table.</p>
           <TeamCarousel />
         </div>
