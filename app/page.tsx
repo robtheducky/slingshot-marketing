@@ -232,7 +232,7 @@ const team = [
     initials: 'RM',
     name: 'Rob Martin',
     role: 'Co-founder',
-    bio: 'Healthcare product leader and parent of a child with a disability.',
+    bio: 'Rob is a healthcare product leader and the parent of a child with a disability. He has spent over 10 years designing and building person-centered technology and operational processes for Medicaid and Medicare patients at Kaiser Permanente, Aledade, and Heyday Health. Rob holds an MPH from Yale.',
     color: '#D97706',
     photo: '/team/rob-martin.jpg',
   },
@@ -240,18 +240,18 @@ const team = [
     initials: 'MM',
     name: 'Maddie Magnusson',
     role: 'Co-founder',
-    bio: 'Social-emotional learning specialist. 50+ IEP meetings across DC, Maryland, and Virginia.',
+    bio: 'Maddie is a social-emotional learning specialist who has sat in more than 50 IEP meetings across DC, Maryland, and Virginia. Across her career in social learning and direct support roles, she has supported students with neurodiverse needs ages 4 to 22 in school, home, and community settings. Maddie holds an MS in Behavioral Psychology from Pepperdine University.',
     color: '#9FB7C8',
-    // photo: '/team/maddie-magnusson.jpg',
+    photo: '/team/maddie-magnusson.jpg',
   },
-  // {
-  //   initials: 'GZ',
-  //   name: 'Greg Zorbas',
-  //   role: 'Founding Advisor',
-  //   bio: '', // TODO: add Greg's bio
-  //   color: '#059669',
-  //   // photo: '/team/greg-zorbas.jpg',
-  // },
+  {
+    initials: 'GZ',
+    name: 'Greg Zorbas',
+    role: 'Founding Advisor',
+    bio: 'Greg is a healthcare and value-based care executive with 15 years of industry experience. As someone on the Autism spectrum, he is passionate about organizations that support the ASD community. Greg received his graduate degrees - MBA and Master of Healthcare Policy and Management, as well as his undergraduate degree from Carnegie Mellon University.',
+    color: '#059669',
+    photo: '/team/greg-zorbas.jpg',
+  },
 ];
 
 function TeamCarousel() {
