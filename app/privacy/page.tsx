@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
 
       <div className="mx-auto max-w-3xl px-6 py-16">
         <h1 className="text-3xl font-extrabold tracking-tight mb-2">Privacy Policy</h1>
-        <p className="text-sm text-[#9B9086] mb-10">Last updated July 31, 2026</p>
+        <p className="text-sm text-[#9B9086] mb-10">Last updated September 9, 2026</p>
 
         <Section title="Who we are">
           <p>
@@ -54,7 +54,8 @@ export default function PrivacyPolicyPage() {
           </p>
           <p>
             <strong>Technical information.</strong> Standard information such as browser type, device type, and pages
-            visited, collected automatically to keep the Service secure and working properly.
+            visited, collected automatically to keep the Service secure and working properly. See
+            &ldquo;Website analytics&rdquo; below for how we measure use of our public website.
           </p>
         </Section>
 
@@ -90,6 +91,27 @@ export default function PrivacyPolicyPage() {
             Your mobile information, including your phone number, will not be shared with third parties or
             affiliates for their marketing or promotional purposes. We use a third party messaging provider
             (Twilio) solely to deliver these text messages on our behalf.
+          </p>
+        </Section>
+
+        <Section title="Website analytics">
+          <p>
+            We use Vercel Web Analytics to understand how people find and use our public website at
+            slingshotiep.com, for example which pages are visited and which sites refer people to us.
+            It does not use cookies, does not create a persistent identifier, and does not store IP
+            addresses. Visits are counted using a temporary hash of the incoming request that is
+            discarded within 24 hours, and the results are available to us only in aggregate. We cannot
+            use it to identify you or to follow you across other websites.
+          </p>
+          <p>
+            Because it sets no cookies and collects no personal identifiers, no consent banner is
+            required to use it. Vercel already hosts Slingshot, so this does not involve sending your
+            information to any additional company.
+          </p>
+          <p>
+            Nothing you enter about your child is measured this way. Documents you upload, and the
+            goals, services, accommodations, and observations they contain, are never sent to an
+            analytics provider.
           </p>
         </Section>
 
