@@ -318,54 +318,85 @@ export default function HomePage() {
       </nav>
 
       {/* Hero */}
-      <section className="mx-auto max-w-4xl px-6 pt-16 sm:pt-20 pb-24">
-        <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.06] tracking-tight mb-6">
+      <section className="mx-auto max-w-5xl px-6 pt-16 sm:pt-20 pb-24">
+        <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.06] tracking-tight text-balance max-w-3xl mb-10">
           No parent should walk into an IEP meeting alone.
         </h1>
-        <p className="text-lg text-[#6B6B6B] leading-relaxed max-w-lg mb-8">
-          Upload the IEP. Log what you see at home. Walk into the meeting with a record
-          instead of a worry.
-        </p>
 
-        {/* Who is behind this */}
-        <div className="flex items-start gap-3 mb-9 max-w-lg">
-          <img
-            src="/team/rob-martin.jpg"
-            alt="Rob Martin"
-            className="w-11 h-11 rounded-full object-cover shrink-0 mt-0.5"
-          />
-          <p className="text-sm text-[#4B4540] leading-relaxed">
-            Built by <strong className="font-semibold text-[#2F2F2F]">Rob Martin</strong>, a
-            BCASE-certified special education advocate and the parent of a child with a
-            disability, and <strong className="font-semibold text-[#2F2F2F]">Maddie Magnusson</strong>,
-            who has sat in more than 50 IEP meetings across DC, Maryland, and Virginia.
-          </p>
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_20rem] gap-10 lg:gap-16 items-start">
+          {/* Promise and action */}
+          <div>
+            <p className="text-lg text-[#4B4540] leading-relaxed max-w-md mb-8">
+              Upload the IEP. Log what you see at home. Walk into the meeting with a record
+              instead of a worry.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-3 max-w-md">
+              <a
+                href={REVIEW_URL}
+                className="inline-flex items-center justify-center rounded-lg px-6 h-12 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] transition-colors"
+              >
+                Get a free IEP review
+              </a>
+              <a
+                href={SIGNIN_URL}
+                className="inline-flex items-center justify-center rounded-lg px-6 h-12 text-sm font-semibold border border-[#E8DFD0] text-[#6B6B6B] hover:text-[#2F2F2F] hover:border-[#C4B9A8] transition-colors"
+              >
+                Or start free on your own
+              </a>
+            </div>
+
+            <p className="mt-5 text-sm text-[#6B6B6B] leading-relaxed max-w-md">
+              Thirty minutes with Rob, at no cost. He is taking five families this month.
+            </p>
+            <p className="mt-2 text-xs text-[#9B9086] leading-relaxed max-w-md">
+              Your child&rsquo;s documents stay private to your account. We never sell them and
+              never share them for marketing.{' '}
+              <Link href="/privacy" className="underline hover:text-[#6B6B6B]">
+                Privacy Policy
+              </Link>
+              .
+            </p>
+          </div>
+
+          {/* Who is behind this */}
+          <aside className="w-full lg:w-80 bg-white rounded-2xl border border-[#E8DFD0] p-5">
+            <p className="text-xs font-bold uppercase tracking-widest text-[#9B9086] mb-4">
+              Who built this
+            </p>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <img
+                  src="/team/rob-martin.jpg"
+                  alt="Rob Martin"
+                  className="w-10 h-10 rounded-full object-cover shrink-0"
+                />
+                <div>
+                  <p className="text-sm font-semibold text-[#2F2F2F] leading-snug">Rob Martin</p>
+                  <p className="text-sm text-[#6B6B6B] leading-snug mt-0.5">
+                    BCASE-certified special education advocate, and the parent of a child with a
+                    disability.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <img
+                  src="/team/maddie-magnusson.jpg"
+                  alt="Maddie Magnusson"
+                  className="w-10 h-10 rounded-full object-cover shrink-0"
+                />
+                <div>
+                  <p className="text-sm font-semibold text-[#2F2F2F] leading-snug">
+                    Maddie Magnusson
+                  </p>
+                  <p className="text-sm text-[#6B6B6B] leading-snug mt-0.5">
+                    Has sat in more than 50 IEP meetings across DC, Maryland, and Virginia.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
-
-        <div className="flex flex-col sm:flex-row gap-3">
-          <a
-            href={REVIEW_URL}
-            className="inline-flex flex-col items-center justify-center rounded-lg px-6 py-3 bg-[#D97706] text-white hover:bg-[#B45309] transition-colors"
-          >
-            <span className="text-sm font-semibold">Get a free IEP review</span>
-            <span className="text-xs text-white/80 font-normal">30 minutes with Rob, no cost</span>
-          </a>
-          <a
-            href={SIGNIN_URL}
-            className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold border border-[#E8DFD0] text-[#6B6B6B] hover:text-[#2F2F2F] hover:border-[#C4B9A8] transition-colors"
-          >
-            Or start free on your own
-          </a>
-        </div>
-
-        <p className="mt-5 text-xs text-[#9B9086] leading-relaxed max-w-md">
-          Rob is taking five families this month. Your child&rsquo;s documents stay private to your
-          account. We never sell them and never share them for marketing.{' '}
-          <Link href="/privacy" className="underline hover:text-[#6B6B6B]">
-            Privacy Policy
-          </Link>
-          .
-        </p>
       </section>
 
       {/* Product showcase */}
