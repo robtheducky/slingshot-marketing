@@ -7,9 +7,8 @@ import { BrowserFrame } from '@/components/ProductMockups';
 
 const SIGNIN_URL = 'https://app.slingshotiep.com/parent?signin=1';
 
-// Swap for a Cal.com or Calendly link once one exists. mailto works today with no setup.
-const REVIEW_URL =
-  'mailto:hello@slingshotiep.com?subject=Free%20IEP%20review&body=Hi%20Rob%2C%20I%27d%20like%20one%20of%20the%20free%20IEP%20reviews.%20My%20child%20is%20in%20____%20grade%20and%20the%20thing%20I%27m%20most%20stuck%20on%20is%3A';
+// Google Calendar appointment schedule for Rob's free 30-minute IEP reviews.
+const REVIEW_URL = 'https://calendar.app.google/YYXzftM3awYo9f5E7';
 
 function TextMeForm({ className = '' }: { className?: string }) {
   const [phone, setPhone] = useState('');
@@ -334,6 +333,8 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row gap-3 max-w-md">
               <a
                 href={REVIEW_URL}
+                target="_blank"
+                rel="noopener"
                 className="inline-flex items-center justify-center rounded-lg px-6 h-12 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] transition-colors"
               >
                 Get a free IEP review
@@ -362,7 +363,7 @@ export default function HomePage() {
           {/* Who is behind this */}
           <aside className="w-full lg:w-80 bg-white rounded-2xl border border-[#E8DFD0] p-5">
             <p className="text-xs font-bold uppercase tracking-widest text-[#9B9086] mb-4">
-              Who built this
+              Built by
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
