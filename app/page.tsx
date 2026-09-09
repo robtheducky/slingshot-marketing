@@ -322,7 +322,7 @@ export default function HomePage() {
           No parent should walk into an IEP meeting alone.
         </h1>
 
-        <div className="grid lg:grid-cols-[minmax(0,1fr)_20rem] gap-10 lg:gap-16 items-start">
+        <div className="grid lg:grid-cols-[minmax(0,1fr)_22rem] gap-10 lg:gap-16 items-start">
           {/* Promise and action */}
           <div>
             <p className="text-lg text-[#4B4540] leading-relaxed max-w-md mb-8">
@@ -361,7 +361,7 @@ export default function HomePage() {
           </div>
 
           {/* Who is behind this */}
-          <aside className="w-full lg:w-80 bg-white rounded-2xl border border-[#E8DFD0] p-5">
+          <aside className="w-full lg:w-[22rem] bg-white rounded-2xl border border-[#E8DFD0] p-5">
             <p className="text-xs font-bold uppercase tracking-widest text-[#9B9086] mb-4">
               Built by
             </p>
@@ -370,7 +370,7 @@ export default function HomePage() {
                 <img
                   src="/team/rob-martin.jpg"
                   alt="Rob Martin"
-                  className="w-10 h-10 rounded-full object-cover shrink-0"
+                  className="w-16 h-16 rounded-full object-cover shrink-0"
                 />
                 <div>
                   <p className="text-sm font-semibold text-[#2F2F2F] leading-snug">Rob Martin</p>
@@ -384,7 +384,7 @@ export default function HomePage() {
                 <img
                   src="/team/maddie-magnusson.jpg"
                   alt="Maddie Magnusson"
-                  className="w-10 h-10 rounded-full object-cover shrink-0"
+                  className="w-16 h-16 rounded-full object-cover shrink-0"
                 />
                 <div>
                   <p className="text-sm font-semibold text-[#2F2F2F] leading-snug">
