@@ -7,6 +7,10 @@ import { BrowserFrame } from '@/components/ProductMockups';
 
 const SIGNIN_URL = 'https://app.slingshotiep.com/parent?signin=1';
 
+// Swap for a Cal.com or Calendly link once one exists. mailto works today with no setup.
+const REVIEW_URL =
+  'mailto:hello@slingshotiep.com?subject=Free%20IEP%20review&body=Hi%20Rob%2C%20I%27d%20like%20one%20of%20the%20free%20IEP%20reviews.%20My%20child%20is%20in%20____%20grade%20and%20the%20thing%20I%27m%20most%20stuck%20on%20is%3A';
+
 function TextMeForm({ className = '' }: { className?: string }) {
   const [phone, setPhone] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
@@ -128,15 +132,15 @@ type Slide = {
 const WEB_SLIDES: Slide[] = [
   {
     label: 'YOUR IEP, ORGANIZED',
-    heading: 'Stop scanning. Start advocating.',
-    body: 'Upload your IEP and Slingshot reads it for you: every goal, service, and accommodation, explained in plain language. No more flipping through 24 loose pages. That energy goes to your child.',
+    heading: 'The IEP is written for the district, not for you.',
+    body: 'Upload it and Slingshot reads it back to you: every goal, service, and accommodation, in plain language. No more flipping through 24 loose pages the night before. That energy goes to your child.',
     cta: 'Try it with your IEP',
     screenshot: '/web/screenshot-confirm-iep.png',
   },
   {
     label: 'STAY ON TOP OF THE CHAOS',
     heading: 'You deserve to feel all caught up.',
-    body: 'Progress reports, therapy updates, school emails. It never stops. Slingshot pulls it together into a status you can actually trust. When it says Looking good, it means it.',
+    body: 'Progress reports arrive on the school\'s schedule, therapy updates on another, and email whenever someone remembers. Slingshot pulls them into one status you can trust. When it says Looking good, it means it.',
     cta: 'Try it with your IEP',
     screenshot: '/web/screenshot-chaos-dashboard.png',
   },
@@ -314,28 +318,54 @@ export default function HomePage() {
       </nav>
 
       {/* Hero */}
-      <section className="mx-auto max-w-4xl px-6 pt-20 pb-28">
+      <section className="mx-auto max-w-4xl px-6 pt-16 sm:pt-20 pb-24">
         <h1 className="text-5xl sm:text-6xl font-extrabold leading-[1.06] tracking-tight mb-6">
           No parent should walk into an IEP meeting alone.
         </h1>
-        <p className="text-lg text-[#6B6B6B] leading-relaxed max-w-sm mb-10">
-          Slingshot helps you build the record that changes your child's arc.
+        <p className="text-lg text-[#6B6B6B] leading-relaxed max-w-lg mb-8">
+          Upload the IEP. Log what you see at home. Walk into the meeting with a record
+          instead of a worry.
         </p>
+
+        {/* Who is behind this */}
+        <div className="flex items-start gap-3 mb-9 max-w-lg">
+          <img
+            src="/team/rob-martin.jpg"
+            alt="Rob Martin"
+            className="w-11 h-11 rounded-full object-cover shrink-0 mt-0.5"
+          />
+          <p className="text-sm text-[#4B4540] leading-relaxed">
+            Built by <strong className="font-semibold text-[#2F2F2F]">Rob Martin</strong>, a
+            BCASE-certified special education advocate and the parent of a child with a
+            disability, and <strong className="font-semibold text-[#2F2F2F]">Maddie Magnusson</strong>,
+            who has sat in more than 50 IEP meetings across DC, Maryland, and Virginia.
+          </p>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-3">
           <a
-            href={SIGNIN_URL}
-            className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold bg-[#D97706] text-white hover:bg-[#B45309] transition-colors"
+            href={REVIEW_URL}
+            className="inline-flex flex-col items-center justify-center rounded-lg px-6 py-3 bg-[#D97706] text-white hover:bg-[#B45309] transition-colors"
           >
-            Get started free
+            <span className="text-sm font-semibold">Get a free IEP review</span>
+            <span className="text-xs text-white/80 font-normal">30 minutes with Rob, no cost</span>
           </a>
           <a
-            href="#product"
+            href={SIGNIN_URL}
             className="inline-flex items-center justify-center rounded-lg px-6 py-3 text-sm font-semibold border border-[#E8DFD0] text-[#6B6B6B] hover:text-[#2F2F2F] hover:border-[#C4B9A8] transition-colors"
           >
-            See how it works
+            Or start free on your own
           </a>
         </div>
-        <p className="mt-4 text-xs text-[#B8AFA5]">Free to start. For families and advocates.</p>
+
+        <p className="mt-5 text-xs text-[#9B9086] leading-relaxed max-w-md">
+          Rob is taking five families this month. Your child&rsquo;s documents stay private to your
+          account. We never sell them and never share them for marketing.{' '}
+          <Link href="/privacy" className="underline hover:text-[#6B6B6B]">
+            Privacy Policy
+          </Link>
+          .
+        </p>
       </section>
 
       {/* Product showcase */}
@@ -395,7 +425,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6">
           <p className="text-2xl font-bold mb-4 max-w-sm leading-snug">For advocates, teachers, or professionals.</p>
           <p className="text-base text-[#6B6B6B] leading-relaxed max-w-sm mb-6">
-            We're recruiting partners for co-development and want to support your practice. If you work with families navigating IEPs, leave your email and we'll reach out.
+            If you carry a caseload of families through IEPs, we want to build around how you already work. Leave your email and Rob will reach out personally.
           </p>
           <ProContactForm className="max-w-sm" />
         </div>

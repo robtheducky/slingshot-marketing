@@ -5,7 +5,7 @@ import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: 'Slingshot IEP',
-  description: 'No parent should walk into an IEP meeting alone. Slingshot prepares families and advocates to get the services children are owed.',
+  description: 'Upload your child\'s IEP, log what you see at home, and walk into the meeting with a record instead of a worry. Built by a BCASE-certified special education advocate.',
   openGraph: {
     title: 'Slingshot IEP',
     description: 'No parent should walk into an IEP meeting alone.',
