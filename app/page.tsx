@@ -348,8 +348,8 @@ export default function HomePage() {
             </div>
 
             <p className="mt-5 text-sm text-[#6B6B6B] leading-relaxed max-w-md">
-              That&rsquo;s me. Send the IEP, we get on a call, and I&rsquo;ll tell you what I&rsquo;d
-              push for. I have room for five families this month.
+              Send the IEP, we get on a call, and I&rsquo;ll tell you what I&rsquo;d push for.
+              I do these myself, so there are only a few slots a month.
             </p>
             <p className="mt-2 text-xs text-[#9B9086] leading-relaxed max-w-md">
               Your child&rsquo;s documents stay private to your account. We never sell them or
