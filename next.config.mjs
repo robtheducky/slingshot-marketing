@@ -1,14 +1,17 @@
+import { readFileSync } from 'node:fs';
+
+const referrals = JSON.parse(readFileSync(new URL('./lib/referrals.json', import.meta.url), 'utf8'));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Short links printed as QR codes on partner flyers. Keep these stable:
-  // the flyers are already printed. Partner names live in lib/turning3.ts.
+  // Short links printed as QR codes on partner flyers: /go/<code> and
+  // /go/<code>-es. Codes come from lib/referrals.json. Keep them stable: the
+  // flyers are already printed.
   async redirects() {
-    const partners = ['arc-moco'];
-    const short = { 'arc-moco': 'arc' };
-    return partners.flatMap(p => [
-      { source: `/go/${short[p]}`,    destination: `/turning3?utm_source=${p}&utm_medium=flyer&utm_campaign=turning3`,    permanent: false },
-      { source: `/go/${short[p]}-es`, destination: `/es/turning3?utm_source=${p}&utm_medium=flyer&utm_campaign=turning3`, permanent: false },
+    return Object.keys(referrals).flatMap(code => [
+      { source: `/go/${code}`,    destination: `/turning3?utm_source=${code}&utm_medium=flyer&utm_campaign=turning3`,    permanent: false },
+      { source: `/go/${code}-es`, destination: `/es/turning3?utm_source=${code}&utm_medium=flyer&utm_campaign=turning3`, permanent: false },
     ]);
   },
   async headers() {
