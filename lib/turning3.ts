@@ -2,8 +2,8 @@
 // (Part C) at age three. Community partners hand out a printed flyer whose QR
 // code points at /go/<code>, which redirects here with utm_source=<code>. Codes
 // are short and random so a URL, analytics row or sign-up email never names the
-// partner; the code -> partner map lives in lib/referrals.json and is only read
-// on the server (partners.ts), so it never ships in page JavaScript.
+// partner, and the page itself never names the partner either. The code ->
+// partner map in referrals/referrals.json is only used for the /go redirects.
 
 export type Lang = 'en' | 'es';
 
@@ -15,7 +15,6 @@ export function copy(lang: Lang) {
 
 const EN = {
   switchLabel: 'En español',
-  sharedBy: (name: string) => `Shared by ${name}`,
   title: 'Is your child turning 3 soon?',
   subtitle: 'Free help getting ready for the move from Infants and Toddlers to school services, in English or Spanish.',
   statusStrong: 'Coming in early 2027.',
@@ -69,12 +68,10 @@ const EN = {
   about: "Slingshot IEP is run by Rob Martin, a certified special education advocate and a Montgomery County parent of a child with autism.",
   questions: 'Questions?',
   spanish: 'Se habla español.',
-  partnerNote: (name: string) => `${name} shared this page. They do not see who contacts us.`,
 };
 
 const ES: typeof EN = {
   switchLabel: 'In English',
-  sharedBy: (name: string) => `Compartido por ${name}`,
   title: '¿Su hijo o hija va a cumplir 3 años pronto?',
   subtitle: 'Ayuda gratuita para prepararse para el cambio de Infants and Toddlers a los servicios de la escuela, en español o en inglés.',
   statusStrong: 'Comienza a principios de 2027.',
@@ -128,5 +125,4 @@ const ES: typeof EN = {
   about: 'Slingshot IEP lo dirige Rob Martin, defensor certificado en educación especial y padre de una niña con autismo en el condado de Montgomery.',
   questions: '¿Preguntas?',
   spanish: 'Se habla español.',
-  partnerNote: (name: string) => `${name} compartió esta página. No ven quién se comunica con nosotros.`,
 };

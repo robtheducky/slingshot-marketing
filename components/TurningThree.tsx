@@ -93,9 +93,7 @@ function List({ items }: { items: string[] }) {
   );
 }
 
-// partner is resolved on the server from the referral code; this component
-// never sees the code -> partner map.
-export default function TurningThree({ lang, source, partner }: { lang: Lang; source: string; partner: string | null }) {
+export default function TurningThree({ lang, source }: { lang: Lang; source: string }) {
   const t = copy(lang);
   const qs = source ? `?utm_source=${encodeURIComponent(source)}&utm_medium=flyer&utm_campaign=turning3` : '';
   const otherHref = (lang === 'en' ? '/es/turning3' : '/turning3') + qs;
@@ -111,9 +109,6 @@ export default function TurningThree({ lang, source, partner }: { lang: Lang; so
         </Link>
       </div>
 
-      {partner && (
-        <p className="mb-3 text-xs font-semibold uppercase tracking-wide text-[#6B6B6B]">{t.sharedBy(partner)}</p>
-      )}
       <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight tracking-tight text-balance mb-4">{t.title}</h1>
       <p className="text-lg leading-relaxed text-[#4A4A4A] mb-6">{t.subtitle}</p>
 
@@ -186,8 +181,6 @@ export default function TurningThree({ lang, source, partner }: { lang: Lang; so
           </p>
         </div>
       </section>
-
-      {partner && <p className="text-sm text-[#6B6B6B]">{t.partnerNote(partner)}</p>}
     </main>
   );
 }
