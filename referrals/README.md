@@ -2,8 +2,9 @@
 
 Community partners hand families a printed flyer. Every partner gets its own
 code, its own pair of QR codes (English and Spanish side of the flyer), and a
-landing page that says "Shared by <partner>". That is how we count which
-partners reach families without ever telling a partner who contacted us.
+landing page. The page never names the partner (a parent seeing "Shared by"
+an organization reads oddly); the code only tells us which flyer worked, as a
+count, and partners never learn who contacted us.
 
 ## Rules
 
@@ -15,8 +16,7 @@ partners reach families without ever telling a partner who contacted us.
 - **QR codes point at the short link** (`/go/<code>`, `/go/<code>-es`), never
   at a long URL or straight at the app. The short link is what lets the
   destination change after printing.
-- **Every code must land on a marketing page** for that audience, which shows
-  "Shared by <partner>". Today all codes use the age three transition page
+- **Every code must land on a marketing page** for that audience. Today all codes use the age three transition page
   (`/turning3`, `/es/turning3`). If a partner serves a different audience
   (school age IEP families, a different county, a different program), build
   that page first, then point the partner's code at it in `next.config.mjs`.
@@ -32,7 +32,7 @@ partners reach families without ever telling a partner who contacted us.
    come from `referrals.json` automatically.
 3. Add a row to the table below. Open a PR and merge.
 4. On the live site, scan both QR codes with a phone. Each must open the
-   landing page in the right language with "Shared by <partner>".
+   landing page in the right language.
 5. Only then send the QR codes for the flyer.
 
 ## Codes
