@@ -55,7 +55,7 @@ const EN = {
   done: 'Thank you. We will contact you when the program opens.',
   error: 'Something went wrong and we did not get this. Please email rob@slingshotiep.com or call or text (301) 456-5187.',
   tryTitle: 'Want to start now?',
-  tryBody: 'The free IFSP tool works today. Create a free account with your email to see your child\'s timeline. You can switch the tool to Spanish after you sign in.',
+  tryBody: 'The free IFSP tool works today. Create a free account with your email to see your child\'s timeline. It works in English or Spanish.',
   tryButton: 'Try the free IFSP tool',
   privacyTitle: 'Your privacy',
   privacy: [
@@ -65,7 +65,11 @@ const EN = {
     'You can ask us to delete your information at any time.',
   ],
   aboutTitle: 'Who is behind this',
-  about: "Slingshot IEP is run by Rob Martin, a certified special education advocate and a Montgomery County parent of a child with autism.",
+  about: 'Slingshot IEP is built by a small team that knows IEP meetings from both sides of the table.',
+  team: [
+    { name: 'Rob Martin', photo: '/team/rob-martin.jpg', role: 'Certified special education advocate and Montgomery County parent of a child with autism.' },
+    { name: 'Maddie Magnusson', photo: '/team/maddie-magnusson.jpg', role: 'Social emotional learning specialist. More than 50 IEP meetings across DC, Maryland, and Virginia.' },
+  ],
   questions: 'Questions?',
   spanish: 'Se habla español.',
 };
@@ -112,7 +116,7 @@ const ES: typeof EN = {
   done: 'Gracias. Le avisaremos cuando el programa abra.',
   error: 'Algo salió mal y no recibimos esto. Escriba a rob@slingshotiep.com o llame o mande un texto al (301) 456-5187.',
   tryTitle: '¿Quiere empezar ahora?',
-  tryBody: 'La herramienta gratuita del IFSP ya funciona. Cree una cuenta gratis con su correo electrónico para ver el calendario de su hijo. Puede cambiar la herramienta a español después de entrar.',
+  tryBody: 'La herramienta gratuita del IFSP ya funciona. Cree una cuenta gratis con su correo electrónico para ver el calendario de su hijo. Funciona en español o en inglés.',
   tryButton: 'Probar la herramienta gratuita',
   privacyTitle: 'Su privacidad',
   privacy: [
@@ -122,7 +126,11 @@ const ES: typeof EN = {
     'Puede pedirnos que borremos su información en cualquier momento.',
   ],
   aboutTitle: 'Quién está detrás de esto',
-  about: 'Slingshot IEP lo dirige Rob Martin, defensor certificado en educación especial y padre de una niña con autismo en el condado de Montgomery.',
+  about: 'Slingshot IEP lo hace un equipo pequeño que conoce las reuniones de IEP desde los dos lados de la mesa.',
+  team: [
+    { name: 'Rob Martin', photo: '/team/rob-martin.jpg', role: 'Defensor certificado en educación especial y padre de una niña con autismo en el condado de Montgomery.' },
+    { name: 'Maddie Magnusson', photo: '/team/maddie-magnusson.jpg', role: 'Especialista en aprendizaje socioemocional. Ha participado en más de 50 reuniones de IEP en DC, Maryland y Virginia.' },
+  ],
   questions: '¿Preguntas?',
   spanish: 'Se habla español.',
 };
