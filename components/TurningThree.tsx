@@ -99,7 +99,7 @@ export default function TurningThree({ lang, source, partner }: { lang: Lang; so
   const t = copy(lang);
   const qs = source ? `?utm_source=${encodeURIComponent(source)}&utm_medium=flyer&utm_campaign=turning3` : '';
   const otherHref = (lang === 'en' ? '/es/turning3' : '/turning3') + qs;
-  const appHref = `${APP_IFSP_URL}?utm_source=${encodeURIComponent(source || 'turning3')}&utm_medium=referral&utm_campaign=turning3&district=mcps`; // this page is for Montgomery County families; the app pre-selects, the family confirms
+  const appHref = `${APP_IFSP_URL}?utm_source=${encodeURIComponent(source || 'turning3')}&utm_medium=referral&utm_campaign=turning3&district=mcps&lang=${lang}`; // this page is for Montgomery County families; the app pre-selects, the family confirms
 
   return (
     <main lang={lang} className="mx-auto max-w-2xl px-5 py-8 sm:py-12 text-[#2F2F2F]">
