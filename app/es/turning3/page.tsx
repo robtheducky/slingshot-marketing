@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import TurningThree from '@/components/TurningThree';
+import { partnerName } from '@/lib/partners';
 
 export const metadata: Metadata = {
   title: '¿Su hijo va a cumplir 3 años pronto? | Slingshot IEP',
@@ -8,5 +9,6 @@ export const metadata: Metadata = {
 };
 
 export default function Page({ searchParams }: { searchParams: { utm_source?: string } }) {
-  return <TurningThree lang="es" source={searchParams.utm_source ?? ''} />;
+  const code = searchParams.utm_source ?? '';
+  return <TurningThree lang="es" source={code} partner={partnerName(code)} />;
 }

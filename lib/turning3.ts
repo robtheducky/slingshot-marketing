@@ -1,21 +1,11 @@
 // Landing page for families whose child is about to leave Infants and Toddlers
 // (Part C) at age three. Community partners hand out a printed flyer whose QR
-// code points at /go/<partner>, which redirects here with utm_source set. The
-// partner never learns who signed up; the source only tells us which flyer
-// worked, as a count.
+// code points at /go/<code>, which redirects here with utm_source=<code>. Codes
+// are short and random so a URL, analytics row or sign-up email never names the
+// partner; the code -> partner map lives in lib/referrals.json and is only read
+// on the server (partners.ts), so it never ships in page JavaScript.
 
 export type Lang = 'en' | 'es';
-
-// utm_source value -> name shown as "Shared by ...". Add a partner here and a
-// redirect pair in next.config.mjs before printing its flyer.
-export const PARTNERS: Record<string, string> = {
-  'arc-moco': 'The Arc Montgomery County',
-};
-
-export function partnerName(source: string | undefined): string | null {
-  if (!source) return null;
-  return PARTNERS[source] ?? null;
-}
 
 export const APP_IFSP_URL = 'https://app.slingshotiep.com/ifsp';
 
@@ -52,7 +42,7 @@ const EN = {
     'You can stop at any time and ask us to delete your information.',
   ],
   formTitle: 'Tell me when it opens',
-  formIntro: 'This does not sign you up for anything. We will only use it to contact you about this program.',
+  formIntro: 'We will only use it to contact you about this program.',
   firstName: 'First name',
   contact: 'Email or phone number',
   language: 'Language you prefer',
@@ -111,7 +101,7 @@ const ES: typeof EN = {
     'Puede dejar el programa cuando quiera y pedirnos que borremos su información.',
   ],
   formTitle: 'Avíseme cuando abra',
-  formIntro: 'Esto no le inscribe en nada. Solo lo usaremos para contactarle sobre este programa.',
+  formIntro: 'Solo lo usaremos para contactarle sobre este programa.',
   firstName: 'Nombre',
   contact: 'Correo electrónico o número de teléfono',
   language: 'Idioma que prefiere',

@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PARTNERS } from '@/lib/turning3';
 
 const RESEND_KEY = process.env.RESEND_API_KEY ?? '';
 
@@ -29,7 +28,8 @@ export async function POST(req: NextRequest) {
   const monthNum = Number(body.month);
   const month = monthNum >= 1 && monthNum <= 12 ? MONTHS[monthNum - 1] : 'not given';
   const sourceRaw = field(body.source, 40);
-  const source = PARTNERS[sourceRaw] ? `${PARTNERS[sourceRaw]} (${sourceRaw})` : sourceRaw || 'direct';
+  // Only the referral code goes in the email; the partner name stays out of the inbox.
+  const source = sourceRaw ? `referral code ${sourceRaw}` : 'direct';
   const page = body.page === 'es' ? 'Spanish page' : 'English page';
 
   if (!RESEND_KEY) return NextResponse.json({ error: 'Not configured' }, { status: 503 });

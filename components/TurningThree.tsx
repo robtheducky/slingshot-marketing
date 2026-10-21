@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import SlingshotLogo from '@/components/SlingshotLogo';
-import { APP_IFSP_URL, copy, partnerName, type Lang } from '@/lib/turning3';
+import { APP_IFSP_URL, copy, type Lang } from '@/lib/turning3';
 
 const input =
   'w-full rounded-lg border border-[#E8DFD0] bg-white text-[#2F2F2F] placeholder-[#C4B9A8] px-3 py-2.5 text-base focus:outline-none focus:ring-2 focus:border-[#9FB7C8] focus:ring-[#9FB7C8]/20';
@@ -93,12 +93,13 @@ function List({ items }: { items: string[] }) {
   );
 }
 
-export default function TurningThree({ lang, source }: { lang: Lang; source: string }) {
+// partner is resolved on the server from the referral code; this component
+// never sees the code -> partner map.
+export default function TurningThree({ lang, source, partner }: { lang: Lang; source: string; partner: string | null }) {
   const t = copy(lang);
-  const partner = partnerName(source);
   const qs = source ? `?utm_source=${encodeURIComponent(source)}&utm_medium=flyer&utm_campaign=turning3` : '';
   const otherHref = (lang === 'en' ? '/es/turning3' : '/turning3') + qs;
-  const appHref = `${APP_IFSP_URL}?utm_source=${encodeURIComponent(source || 'turning3')}&utm_medium=referral&utm_campaign=turning3`;
+  const appHref = `${APP_IFSP_URL}?utm_source=${encodeURIComponent(source || 'turning3')}&utm_medium=referral&utm_campaign=turning3&district=mcps`; // this page is for Montgomery County families; the app pre-selects, the family confirms
 
   return (
     <main lang={lang} className="mx-auto max-w-2xl px-5 py-8 sm:py-12 text-[#2F2F2F]">
