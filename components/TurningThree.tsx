@@ -166,11 +166,21 @@ export default function TurningThree({ lang, source }: { lang: Lang; source: str
         <List items={t.privacy} />
       </section>
 
-      <section className="mb-10 flex gap-4 items-start">
-        <img src="/team/rob-martin.jpg" alt="" className="h-16 w-16 rounded-full object-cover shrink-0" />
+      <section className="mb-10">
+        <h2 className="text-xl font-bold mb-2">{t.aboutTitle}</h2>
+        <p className="text-base leading-relaxed text-[#4A4A4A] mb-5">{t.about}</p>
+        <ul className="flex flex-col gap-4 mb-6">
+          {t.team.map(person => (
+            <li key={person.name} className="flex gap-4 items-start">
+              <img src={person.photo} alt={person.name} className="h-16 w-16 rounded-full object-cover shrink-0" />
+              <div>
+                <p className="text-base font-semibold">{person.name}</p>
+                <p className="text-sm leading-relaxed text-[#4A4A4A]">{person.role}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
         <div>
-          <h2 className="text-xl font-bold mb-2">{t.aboutTitle}</h2>
-          <p className="text-base leading-relaxed text-[#4A4A4A] mb-3">{t.about}</p>
           <p className="text-base leading-relaxed">
             <strong>{t.questions}</strong>{' '}
             <a href="mailto:rob@slingshotiep.com" className="underline underline-offset-4">rob@slingshotiep.com</a>
