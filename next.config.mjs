@@ -1,12 +1,12 @@
 import { readFileSync } from 'node:fs';
 
-const referrals = JSON.parse(readFileSync(new URL('./lib/referrals.json', import.meta.url), 'utf8'));
+const referrals = JSON.parse(readFileSync(new URL('./referrals/referrals.json', import.meta.url), 'utf8'));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   // Short links printed as QR codes on partner flyers: /go/<code> and
-  // /go/<code>-es. Codes come from lib/referrals.json. Keep them stable: the
+  // /go/<code>-es. Codes come from referrals/referrals.json. Keep them stable: the
   // flyers are already printed.
   async redirects() {
     return Object.keys(referrals).flatMap(code => [

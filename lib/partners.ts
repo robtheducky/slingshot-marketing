@@ -1,5 +1,5 @@
 import 'server-only';
-import referrals from './referrals.json';
+import referrals from '../referrals/referrals.json';
 
 // Referral code -> partner name, shown to the family as "Shared by ...".
 // To add a partner: add a random 4 character code here (lowercase, no 0/o/1/l/i)

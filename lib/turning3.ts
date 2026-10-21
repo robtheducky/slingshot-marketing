@@ -2,7 +2,7 @@
 // (Part C) at age three. Community partners hand out a printed flyer whose QR
 // code points at /go/<code>, which redirects here with utm_source=<code>. Codes
 // are short and random so a URL, analytics row or sign-up email never names the
-// partner; the code -> partner map lives in lib/referrals.json and is only read
+// partner; the code -> partner map lives in referrals/referrals.json and is only read
 // on the server (partners.ts), so it never ships in page JavaScript.
 
 export type Lang = 'en' | 'es';
