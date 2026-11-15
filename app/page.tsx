@@ -5,7 +5,9 @@ import Link from 'next/link';
 import SlingshotLogo from '@/components/SlingshotLogo';
 import { BrowserFrame } from '@/components/ProductMockups';
 
-const SIGNIN_URL = 'https://app.slingshotiep.com/parent?signin=1';
+// /parent was retired in the app (slingshot-iep #1022); /iep shows the
+// email sign-in to anyone signed out. track=iep attributes the sign-up.
+const SIGNIN_URL = 'https://app.slingshotiep.com/iep?track=iep';
 
 // Google Calendar appointment schedule for Rob's free 30-minute IEP reviews.
 const REVIEW_URL = 'https://calendar.app.google/YYXzftM3awYo9f5E7';
